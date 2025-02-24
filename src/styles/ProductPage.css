@@ -57,4 +57,11 @@
     width: 300px;
     height: 300px;
     border: 2px solid #000;
+    margin-top: 20px;
+    /* Added margin to create space */
+}
+
+.product-page button {
+    margin-bottom: 20px;
+    /* Added margin to create space */
 }

@@ -39,11 +39,11 @@ const ProductPage: React.FC = () => {
         <Link to="/home">Home</Link> {/* Navigate to HomePage */}
         <Link to="/cart">Cart</Link>
       </nav>
-      <img src={shoe.image} alt={shoe.name} />
+      <img src={shoe.image} alt={shoe.name} className="product-image" />
       <h1>{shoe.name}</h1>
       <p>{shoe.description}</p>
       <p>{shoe.price}</p>
-      <button onClick={() => addToCart(shoe.id.toString())}>Add to Cart</button>
+      <button onClick={() => addToCart(shoe.id.toString())} className="add-to-cart-button">Add to Cart</button>
       <footer className="footer">
         <p>&copy; 2023 GPK Solution</p>
       </footer>
