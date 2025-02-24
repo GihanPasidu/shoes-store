@@ -1,0 +1,62 @@
+/* src/pages/HomePage.css */
+
+.home-page {
+    text-align: center;
+}
+
+.header {
+    background-color: #007bff;
+    /* Blue theme */
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.shortcut-bar {
+    background-color: #0056b3;
+    /* Darker blue for contrast */
+    padding: 10px 0;
+    text-align: center;
+}
+
+.shortcut-bar a {
+    color: #fff;
+    margin: 0 15px;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.shortcut-bar a:hover {
+    text-decoration: underline;
+}
+
+.footer {
+    background-color: #007bff;
+    /* Blue theme */
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+    font-size: 14px;
+}
+
+.shoe-list {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    /* Set one row to display 5 items */
+    gap: 20px;
+    justify-items: center;
+}
+
+.shoe-item {
+    width: 100%;
+    max-width: 200px;
+    margin: 15px;
+}
+
+.shoe-item img {
+    width: 200px;
+    height: 200px;
+    border: 2px solid #000;
+}

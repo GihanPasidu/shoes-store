@@ -1,0 +1,56 @@
+.product-page {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Center all elements */
+    min-height: 100vh;
+}
+
+.header {
+    background-color: #007bff;
+    /* Blue theme */
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    width: 100%;
+}
+
+.shortcut-bar {
+    background-color: #0056b3;
+    /* Darker blue for contrast */
+    padding: 10px 0;
+    text-align: center;
+    width: 100%;
+}
+
+.shortcut-bar a {
+    color: #fff;
+    margin: 0 15px;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.shortcut-bar a:hover {
+    text-decoration: underline;
+}
+
+.footer {
+    background-color: #007bff;
+    /* Blue theme */
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+    font-size: 14px;
+    margin-top: auto;
+    /* Ensure footer is at the bottom */
+    width: 100%;
+}
+
+.product-page img {
+    width: 300px;
+    height: 300px;
+    border: 2px solid #000;
+}

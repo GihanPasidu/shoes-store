@@ -1,0 +1,150 @@
+{
+    "shoes": [{
+            "id": 1,
+            "name": "Nike Air Max",
+            "price": "$120",
+            "description": "Comfortable and stylish sneakers.",
+            "image": "https://static.nike.com/a/images/t_PDP_936_v1/f_auto,q_auto:eco/e783e052-9360-4afb-adb8-c4e9c0f5db07/NIKE+AIR+MAX+NUAXIS.png"
+        },
+        {
+            "id": 2,
+            "name": "Adidas Ultraboost",
+            "price": "$180",
+            "description": "High-performance running shoes.",
+            "image": "https://m.media-amazon.com/images/I/31bZeDqIMWL._AC_.jpg"
+        },
+        {
+            "id": 3,
+            "name": "Puma Suede Classic",
+            "price": "$80",
+            "description": "Classic style with a comfortable fit.",
+            "image": "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_1000,h_1000/global/374915/01/sv01/fnd/SEA/fmt/png/Suede-Classic-XXI-Trainers"
+        },
+        {
+            "id": 4,
+            "name": "Reebok Classic",
+            "price": "$90",
+            "description": "Timeless design with modern comfort.",
+            "image": "https://www.reebok.com/cdn/shop/files/100009276_SLC_eCom-tif.png?v=1734089325&width=2000"
+        },
+        {
+            "id": 5,
+            "name": "New Balance 574",
+            "price": "$100",
+            "description": "Versatile and stylish everyday shoes.",
+            "image": "https://nb.scene7.com/is/image/NB/u574rbg_nb_02_i?$pdpflexf2$&wid=440&hei=440"
+        },
+        {
+            "id": 6,
+            "name": "Asics Gel-Kayano",
+            "price": "$160",
+            "description": "High-performance running shoes with superior support.",
+            "image": "https://images.asics.com/is/image/asics/1203A388_101_SR_RT_GLB?$sfcc-product$"
+        },
+        {
+            "id": 7,
+            "name": "Converse Chuck Taylor",
+            "price": "$60",
+            "description": "Classic canvas sneakers.",
+            "image": "https://www.converse.sg/media/catalog/product/0/8/0883-CONM9160C000003-1.jpg"
+        },
+        {
+            "id": 8,
+            "name": "Vans Old Skool",
+            "price": "$70",
+            "description": "Iconic skate shoes.",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQFKGO23YcTvkf6VEEr5qNSWJaffnC1kCDBA&s"
+        },
+        {
+            "id": 9,
+            "name": "Under Armour HOVR",
+            "price": "$140",
+            "description": "High-performance training shoes.",
+            "image": "https://example.com/under-armour-hovr.jpg"
+        },
+        {
+            "id": 10,
+            "name": "Saucony Jazz Original",
+            "price": "$80",
+            "description": "Retro running shoes.",
+            "image": "https://example.com/saucony-jazz-original.jpg"
+        },
+        {
+            "id": 11,
+            "name": "Brooks Ghost 13",
+            "price": "$130",
+            "description": "Comfortable running shoes.",
+            "image": "https://example.com/brooks-ghost-13.jpg"
+        },
+        {
+            "id": 12,
+            "name": "Mizuno Wave Rider",
+            "price": "$120",
+            "description": "Responsive running shoes.",
+            "image": "https://example.com/mizuno-wave-rider.jpg"
+        },
+        {
+            "id": 13,
+            "name": "Hoka One One Clifton",
+            "price": "$150",
+            "description": "Cushioned running shoes.",
+            "image": "https://example.com/hoka-one-one-clifton.jpg"
+        },
+        {
+            "id": 14,
+            "name": "Fila Disruptor",
+            "price": "$70",
+            "description": "Chunky sneakers.",
+            "image": "https://example.com/fila-disruptor.jpg"
+        },
+        {
+            "id": 15,
+            "name": "Timberland 6-Inch Boot",
+            "price": "$190",
+            "description": "Durable and stylish boots.",
+            "image": "https://example.com/timberland-6-inch-boot.jpg"
+        },
+        {
+            "id": 16,
+            "name": "Dr. Martens 1460",
+            "price": "$150",
+            "description": "Classic leather boots.",
+            "image": "https://example.com/dr-martens-1460.jpg"
+        },
+        {
+            "id": 17,
+            "name": "Birkenstock Arizona",
+            "price": "$100",
+            "description": "Comfortable sandals.",
+            "image": "https://example.com/birkenstock-arizona.jpg"
+        },
+        {
+            "id": 18,
+            "name": "Crocs Classic Clog",
+            "price": "$45",
+            "description": "Comfortable and versatile clogs.",
+            "image": "https://example.com/crocs-classic-clog.jpg"
+        },
+        {
+            "id": 19,
+            "name": "Skechers D'Lites",
+            "price": "$65",
+            "description": "Comfortable and stylish sneakers.",
+            "image": "https://example.com/skechers-dlites.jpg"
+        },
+        {
+            "id": 20,
+            "name": "Salomon Speedcross",
+            "price": "$130",
+            "description": "Trail running shoes.",
+            "image": "https://example.com/salomon-speedcross.jpg"
+        },
+        {
+            "id": 21,
+            "name": "Nike Air Zoom Pegasus",
+            "price": "$110",
+            "description": "Lightweight and responsive running shoes.",
+            "image": "https://example.com/nike-air-zoom-pegasus.jpg"
+        }
+    ]
+}
