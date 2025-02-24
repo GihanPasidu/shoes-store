@@ -83,12 +83,12 @@ const CartPage: React.FC = () => {
             ))}
           </ul>
           <button className="remove-button" onClick={handleRemoveSelected}>Remove</button>
+          <div className="total-price">
+            <h2>Total Price: ${totalPrice.toFixed(2)}</h2>
+            <button className="checkout-button" onClick={handleCheckout}>Checkout</button>
+          </div>
         </>
       )}
-      <div className="total-price">
-        <h2>Total Price: ${totalPrice.toFixed(2)}</h2>
-        <button className="checkout-button" onClick={handleCheckout}>Checkout</button>
-      </div>
       <footer className="footer">
         <p>&copy; 2023 GPK Solution</p>
       </footer>
