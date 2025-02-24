@@ -60,91 +60,91 @@
             "name": "Under Armour HOVR",
             "price": "$140",
             "description": "High-performance training shoes.",
-            "image": "https://example.com/under-armour-hovr.jpg"
+            "image": "https://m.media-amazon.com/images/I/71p2g5z5JLL._AC_UL1500_.jpg"
         },
         {
             "id": 10,
             "name": "Saucony Jazz Original",
             "price": "$80",
             "description": "Retro running shoes.",
-            "image": "https://example.com/saucony-jazz-original.jpg"
+            "image": "https://m.media-amazon.com/images/I/71Qy4Z9xKLL._AC_UL1500_.jpg"
         },
         {
             "id": 11,
             "name": "Brooks Ghost 13",
             "price": "$130",
             "description": "Comfortable running shoes.",
-            "image": "https://example.com/brooks-ghost-13.jpg"
+            "image": "https://m.media-amazon.com/images/I/81o1b8GZJLL._AC_UL1500_.jpg"
         },
         {
             "id": 12,
             "name": "Mizuno Wave Rider",
             "price": "$120",
             "description": "Responsive running shoes.",
-            "image": "https://example.com/mizuno-wave-rider.jpg"
+            "image": "https://m.media-amazon.com/images/I/81z5J5z5JLL._AC_UL1500_.jpg"
         },
         {
             "id": 13,
             "name": "Hoka One One Clifton",
             "price": "$150",
             "description": "Cushioned running shoes.",
-            "image": "https://example.com/hoka-one-one-clifton.jpg"
+            "image": "https://m.media-amazon.com/images/I/81z5J5z5JLL._AC_UL1500_.jpg"
         },
         {
             "id": 14,
             "name": "Fila Disruptor",
             "price": "$70",
             "description": "Chunky sneakers.",
-            "image": "https://example.com/fila-disruptor.jpg"
+            "image": "https://m.media-amazon.com/images/I/71p2g5z5JLL._AC_UL1500_.jpg"
         },
         {
             "id": 15,
             "name": "Timberland 6-Inch Boot",
             "price": "$190",
             "description": "Durable and stylish boots.",
-            "image": "https://example.com/timberland-6-inch-boot.jpg"
+            "image": "https://m.media-amazon.com/images/I/71p2g5z5JLL._AC_UL1500_.jpg"
         },
         {
             "id": 16,
             "name": "Dr. Martens 1460",
             "price": "$150",
             "description": "Classic leather boots.",
-            "image": "https://example.com/dr-martens-1460.jpg"
+            "image": "https://m.media-amazon.com/images/I/71p2g5z5JLL._AC_UL1500_.jpg"
         },
         {
             "id": 17,
             "name": "Birkenstock Arizona",
             "price": "$100",
             "description": "Comfortable sandals.",
-            "image": "https://example.com/birkenstock-arizona.jpg"
+            "image": "https://m.media-amazon.com/images/I/71p2g5z5JLL._AC_UL1500_.jpg"
         },
         {
             "id": 18,
             "name": "Crocs Classic Clog",
             "price": "$45",
             "description": "Comfortable and versatile clogs.",
-            "image": "https://example.com/crocs-classic-clog.jpg"
+            "image": "https://m.media-amazon.com/images/I/71p2g5z5JLL._AC_UL1500_.jpg"
         },
         {
             "id": 19,
             "name": "Skechers D'Lites",
             "price": "$65",
             "description": "Comfortable and stylish sneakers.",
-            "image": "https://example.com/skechers-dlites.jpg"
+            "image": "https://m.media-amazon.com/images/I/71p2g5z5JLL._AC_UL1500_.jpg"
         },
         {
             "id": 20,
             "name": "Salomon Speedcross",
             "price": "$130",
             "description": "Trail running shoes.",
-            "image": "https://example.com/salomon-speedcross.jpg"
+            "image": "https://m.media-amazon.com/images/I/71p2g5z5JLL._AC_UL1500_.jpg"
         },
         {
             "id": 21,
             "name": "Nike Air Zoom Pegasus",
             "price": "$110",
             "description": "Lightweight and responsive running shoes.",
-            "image": "https://example.com/nike-air-zoom-pegasus.jpg"
+            "image": "https://m.media-amazon.com/images/I/71p2g5z5JLL._AC_UL1500_.jpg"
         }
     ]
 }

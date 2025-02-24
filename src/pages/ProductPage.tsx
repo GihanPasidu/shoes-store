@@ -36,7 +36,7 @@ const ProductPage: React.FC = () => {
         <h1>BLUE TAG</h1>
       </header>
       <nav className="shortcut-bar">
-        <Link to="/home">Home</Link> {/* Navigate to HomePage */}
+        <Link to="/home">Home</Link>
         <Link to="/cart">Cart</Link>
       </nav>
       <img src={shoe.image} alt={shoe.name} />

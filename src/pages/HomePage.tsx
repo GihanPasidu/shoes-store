@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
-import '../styles/HomePage.css'; // Updated import path
+import '../styles/HomePage.css';
 import { useCart } from '../context/CartContext';
 
 interface Shoe {

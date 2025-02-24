@@ -8,4 +8,6 @@ body {
     background-position: center;
     height: 100vh;
     background-repeat: no-repeat;
+    background-color: #f0f0f0;
+    /* Fallback background color */
 }

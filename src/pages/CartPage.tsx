@@ -61,7 +61,7 @@ const CartPage: React.FC = () => {
         <h1>BLUE TAG</h1>
       </header>
       <nav className="shortcut-bar">
-        <Link to="/home">Home</Link> {/* Navigate to HomePage */}
+        <Link to="/home">Home</Link>
       </nav>
       <h1>Your Cart</h1>
       {cartItems.length === 0 ? (

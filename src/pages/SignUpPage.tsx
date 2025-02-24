@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import '../styles/SignUpPage.css';
 
 const SignUpPage: React.FC = () => {
@@ -15,9 +16,18 @@ const SignUpPage: React.FC = () => {
       setError('Passwords do not match');
       return;
     }
-    // Add sign up logic here
-    console.log('Signing up with', { email, password, confirmPassword });
-    navigate('/home'); // Navigate to HomePage after sign up
+
+    const newUser = { email, password };
+
+    axios.post('http://localhost:5000/signup', newUser)
+      .then(response => {
+        console.log('User signed up:', response.data);
+        navigate('/home'); // Navigate to HomePage after sign up
+      })
+      .catch(err => {
+        console.error('Error signing up:', err);
+        setError('Failed to sign up');
+      });
   };
 
   return (
