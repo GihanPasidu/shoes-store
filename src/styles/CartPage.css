@@ -11,9 +11,11 @@
     background-color: #007bff;
     /* Blue theme */
     color: #fff;
-    padding: 10px 0;
+    padding: 5px 0;
+    /* Reduced padding */
     text-align: center;
-    font-size: 24px;
+    font-size: 20px;
+    /* Reduced font size */
     font-weight: bold;
 }
 
@@ -39,9 +41,11 @@
     background-color: #007bff;
     /* Blue theme */
     color: #fff;
-    padding: 10px 0;
+    padding: 5px 0;
+    /* Reduced padding */
     text-align: center;
-    font-size: 14px;
+    font-size: 12px;
+    /* Reduced font size */
     margin-top: auto;
 }
 
