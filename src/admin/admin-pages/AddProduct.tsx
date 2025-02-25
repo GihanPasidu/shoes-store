@@ -90,6 +90,9 @@ const AddProduct: React.FC = () => {
           </form>
         </main>
       </div>
+      <footer className="admin-footer">
+        <p>&copy; {new Date().getFullYear()} GPK Solution. All rights reserved.</p>
+      </footer>
     </div>
   );
 };

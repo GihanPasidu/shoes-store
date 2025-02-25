@@ -67,32 +67,16 @@ const EditProduct: React.FC = () => {
             <h2>Edit Product</h2>
             <div className="edit-product-current">
               <img src={image} alt={name} className="product-preview" />
-              <div className="product-details">
-                <div className="detail-row">
-                  <label>Current Product Details:</label>
-                  <table className="details-table">
-                    <tbody>
-                      <tr>
-                        <td><strong>Name:</strong></td>
-                        <td>{name}</td>
-                      </tr>
-                      <tr>
-                        <td><strong>Price:</strong></td>
-                        <td>${price}</td>
-                      </tr>
-                      <tr>
-                        <td><strong>Description:</strong></td>
-                        <td>{description}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+              <div className="current-details">
+                <p><strong>Current Name:</strong> {name}</p>
+                <p><strong>Current Price:</strong> ${price}</p>
+                <p><strong>Current Description:</strong> {description}</p>
               </div>
             </div>
 
             <div className="input-group">
               <div className="input-box">
-                <label>Update Name</label>
+                <label>New Name <span className="current-value">Current: {name}</span></label>
                 <input
                   type="text"
                   value={name}
@@ -104,7 +88,7 @@ const EditProduct: React.FC = () => {
 
             <div className="input-group">
               <div className="input-box">
-                <label>Update Price ($)</label>
+                <label>New Price <span className="current-value">Current: ${price}</span></label>
                 <input
                   type="number"
                   value={price}
@@ -116,7 +100,8 @@ const EditProduct: React.FC = () => {
 
             <div className="input-group">
               <div className="input-box">
-                <label>Update Description</label>
+                <label>New Description</label>
+                <div className="current-value">Current: {description}</div>
                 <textarea
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
@@ -127,7 +112,8 @@ const EditProduct: React.FC = () => {
 
             <div className="input-group">
               <div className="input-box">
-                <label>Update Image URL</label>
+                <label>New Image URL</label>
+                <div className="current-value">Current: {image}</div>
                 <input
                   type="url"
                   value={image}

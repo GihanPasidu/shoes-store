@@ -1,29 +1,33 @@
 {
-  "users": [
-    {
-      "id": "1e9d",
-      "email": "example@gmail.com",
-      "password": "1234"
-    },
-    {
-      "id": "1345",
-      "email": "sedgbers@gmail.com",
-      "password": "123456"
-    },
-    {
-      "id": "f4be",
-      "email": "example@gmail.com",
-      "password": "1234"
-    },
-    {
-      "id": "a4f1",
-      "email": "ghfdbs@gmail.com",
-      "password": "7894"
-    },
-    {
-      "id": "37de",
-      "email": "arfhwrthb@gmail.com",
-      "password": "12345"
-    }
-  ]
+    "users": [{
+            "id": "1e9d",
+            "email": "example@gmail.com",
+            "password": "1234"
+        },
+        {
+            "id": "1345",
+            "email": "sedgbers@gmail.com",
+            "password": "123456"
+        },
+        {
+            "id": "f4be",
+            "email": "example@gmail.com",
+            "password": "1234"
+        },
+        {
+            "id": "a4f1",
+            "email": "ghfdbs@gmail.com",
+            "password": "7894"
+        },
+        {
+            "id": "37de",
+            "email": "arfhwrthb@gmail.com",
+            "password": "12345"
+        },
+        {
+            "id": "admin1",
+            "email": "sahan@gmail.com",
+            "password": "8080"
+        }
+    ]
 }

@@ -28,10 +28,21 @@ const AdminDashboard: React.FC = () => {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [showConfirmDialog, setShowConfirmDialog] = useState(false);
   const [itemToDelete, setItemToDelete] = useState<{ id: number | string, type: 'product' | 'user' } | null>(null);
+  const [showLogoutDialog, setShowLogoutDialog] = useState(false);
+  const [showLoginConfirm, setShowLoginConfirm] = useState(true);
+  const [showLoginPopup, setShowLoginPopup] = useState(true);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const itemsPerPage = 8;
 
   useEffect(() => {
-    checkAuth();
+    const isAuthenticated = checkAuth();
+    if (isAuthenticated) {
+      setShowLoginConfirm(true);
+      setTimeout(() => {
+        setShowLoginConfirm(false);
+      }, 2000); // Hide after 2 seconds
+    }
   }, []);
 
   useEffect(() => {
@@ -94,6 +105,29 @@ const AdminDashboard: React.FC = () => {
     setItemToDelete(null);
   };
 
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const response = await axios.get('http://localhost:5001/users');
+      const users = response.data;
+      const user = users.find((u: any) => u.email === email && u.password === password);
+      
+      if (user) {
+        localStorage.setItem('token', 'dummy-token');
+        setShowLoginPopup(false);
+        setShowLoginConfirm(true);
+        setTimeout(() => {
+          setShowLoginConfirm(false);
+        }, 2000);
+      } else {
+        alert('Invalid credentials');
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      alert('Login failed');
+    }
+  };
+
   const getInitials = (email: string) => {
     return email.split('@')[0].substring(0, 2).toUpperCase();
   };
@@ -128,6 +162,15 @@ const AdminDashboard: React.FC = () => {
     );
   };
 
+  const handleLogout = () => {
+    setShowLogoutDialog(true);
+  };
+
+  const confirmLogout = () => {
+    localStorage.removeItem('token');
+    window.location.href = '/login';
+  };
+
   return (
     <div className="admin-dashboard">
       <header className="admin-header">
@@ -135,10 +178,7 @@ const AdminDashboard: React.FC = () => {
           <Link to="/admin" className="logo">BLUE TAG ADMIN</Link>
           <nav className="admin-nav">
             <Link to="/home">View Store</Link>
-            <button onClick={() => {
-              localStorage.removeItem('token');
-              window.location.href = '/login';
-            }}>Logout</button>
+            <button onClick={handleLogout}>Logout</button>
           </nav>
         </div>
       </header>
@@ -221,48 +261,44 @@ const AdminDashboard: React.FC = () => {
                   />
                 </div>
               </div>
-              {loading ? (
-                <div className="loading-spinner">Loading...</div>
-              ) : (
-                <div className="users-table-container">
-                  <table className="users-table">
-                    <thead>
-                      <tr>
-                        <th>User</th>
-                        <th>ID</th>
-                        <th>Email</th>
-                        <th>Actions</th>
+              <div className="users-table-container">
+                <table className="users-table">
+                  <thead>
+                    <tr>
+                      <th>User</th>
+                      <th>ID</th>
+                      <th>Email</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {filteredUsers.map(user => (
+                      <tr key={user.id}>
+                        <td>
+                          <div className="user-info">
+                            <div className="user-avatar">
+                              {getInitials(user.email)}
+                            </div>
+                          </div>
+                        </td>
+                        <td>{user.id}</td>
+                        <td>{user.email}</td>
+                        <td>
+                          <div className="user-actions">
+                            <button className="view-button">View Details</button>
+                            <button 
+                              className="delete-button"
+                              onClick={() => handleDeleteClick(user.id, 'user')}
+                            >
+                              Delete
+                            </button>
+                          </div>
+                        </td>
                       </tr>
-                    </thead>
-                    <tbody>
-                      {filteredUsers.map(user => (
-                        <tr key={user.id}>
-                          <td>
-                            <div className="user-info">
-                              <div className="user-avatar">
-                                {getInitials(user.email)}
-                              </div>
-                              <div className="user-email">{user.email}</div>
-                            </div>
-                          </td>
-                          <td>{user.id}</td>
-                          <td>{user.email}</td>
-                          <td>
-                            <div className="user-actions">
-                              <button 
-                                className="delete-button"
-                                onClick={() => handleDeleteClick(user.id, 'user')}
-                              >
-                                Delete User
-                              </button>
-                            </div>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              )}
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           )}
         </main>
@@ -277,6 +313,66 @@ const AdminDashboard: React.FC = () => {
               <button className="cancel-delete" onClick={() => setShowConfirmDialog(false)}>Cancel</button>
             </div>
           </div>
+        </div>
+      )}
+      {showLogoutDialog && (
+        <div className="logout-dialog-overlay">
+          <div className="logout-dialog">
+            <h3>Confirm Logout</h3>
+            <p>Are you sure you want to logout?</p>
+            <div className="logout-dialog-buttons">
+              <button className="confirm-logout" onClick={confirmLogout}>
+                Yes, Logout
+              </button>
+              <button className="cancel-logout" onClick={() => setShowLogoutDialog(false)}>
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      {showLoginConfirm && (
+        <div className="login-confirm-overlay">
+          <div className="login-confirm-dialog">
+            <div className="success-icon">✓</div>
+            <h3>Login Successful</h3>
+            <p>Welcome to Admin Dashboard</p>
+          </div>
+        </div>
+      )}
+      {showLoginPopup && (
+        <div className="login-popup-overlay">
+          <form className="login-popup" onSubmit={handleLogin}>
+            <h3>Admin Login</h3>
+            <div className="input-group">
+              <input
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
+            <div className="input-group">
+              <input
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+            <div className="buttons">
+              <button type="submit" className="login-button">Login</button>
+              <button 
+                type="button" 
+                className="cancel-button"
+                onClick={() => window.location.href = '/'}
+              >
+                Cancel
+              </button>
+            </div>
+          </form>
         </div>
       )}
       <footer className="admin-footer">
