@@ -1,12 +1,16 @@
-# Getting Started with Create React App
+# 👟 Shoes Store Web Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern e-commerce web application for selling shoes, built with React and powered by JSON Server for the backend.
 
-## Available Scripts
+## 🎯 Project Overview
+
+This application provides a seamless shopping experience for customers looking to purchase shoes online. It features product browsing, shopping cart functionality, and user management.
+
+## 🛠️ Available Scripts
 
 In the project directory, you can run:
 
-### `npm start`
+### 🚀 `npm start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -14,12 +18,12 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### `npm test`
+### 🧪 `npm test`
 
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+### 📦 `npm run build`
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
@@ -29,7 +33,21 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+### 💾 Database Services
+
+#### 📊 `json-server --watch src/data/db.json --port 5000`
+
+Runs the product database server on port 5000.\
+This database contains product information including shoes inventory, prices, categories, and product details.\
+Open [http://localhost:5000](http://localhost:5000) to view the database.
+
+#### 👥 `json-server --watch src/data/user.json --port 5001`
+
+Runs the user management database server on port 5001.\
+This database contains user profiles, authentication data, and shopping cart information.\
+Open [http://localhost:5001](http://localhost:5001) to view the database.
+
+### ⚙️ `npm run eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
@@ -39,7 +57,7 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+## 📚 Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
