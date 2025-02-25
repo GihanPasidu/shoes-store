@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import '../admin-styles/AdminDashboard.css';
+import { checkAuth } from '../../utils/authUtils';
 
 interface Product {
   id: number;
@@ -25,7 +26,13 @@ const AdminDashboard: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [isSidebarExpanded, setIsSidebarExpanded] = useState(window.innerWidth > 768);
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const [showConfirmDialog, setShowConfirmDialog] = useState(false);
+  const [itemToDelete, setItemToDelete] = useState<{ id: number | string, type: 'product' | 'user' } | null>(null);
   const itemsPerPage = 8;
+
+  useEffect(() => {
+    checkAuth();
+  }, []);
 
   useEffect(() => {
     fetchProducts();
@@ -63,26 +70,28 @@ const AdminDashboard: React.FC = () => {
     }
   };
 
-  const handleDeleteProduct = async (id: number) => {
-    if (window.confirm('Are you sure you want to delete this product?')) {
-      try {
-        await axios.delete(`http://localhost:5000/shoes/${id}`);
-        fetchProducts();
-      } catch (error) {
-        console.error('Error deleting product:', error);
-      }
-    }
+  const handleDeleteClick = (id: number | string, type: 'product' | 'user') => {
+    setItemToDelete({ id, type });
+    setShowConfirmDialog(true);
   };
 
-  const handleDeleteUser = async (id: string) => {
-    if (window.confirm('Are you sure you want to delete this user?')) {
-      try {
-        await axios.delete(`http://localhost:5001/users/${id}`);
+  const handleConfirmDelete = async () => {
+    if (!itemToDelete) return;
+
+    try {
+      if (itemToDelete.type === 'product') {
+        await axios.delete(`http://localhost:5000/shoes/${itemToDelete.id}`);
+        fetchProducts();
+      } else {
+        await axios.delete(`http://localhost:5001/users/${itemToDelete.id}`);
         fetchUsers();
-      } catch (error) {
-        console.error('Error deleting user:', error);
       }
+    } catch (error) {
+      console.error(`Error deleting ${itemToDelete.type}:`, error);
     }
+    
+    setShowConfirmDialog(false);
+    setItemToDelete(null);
   };
 
   const getInitials = (email: string) => {
@@ -165,14 +174,16 @@ const AdminDashboard: React.FC = () => {
         <main className={`admin-content ${isSidebarCollapsed ? 'full-width' : ''}`}>
           {activeTab === 'products' ? (
             <div className="products-section">
-              <h2>Products Management</h2>
-              <div className="search-bar">
-                <input
-                  type="text"
-                  placeholder="Search products..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                />
+              <div className="section-header">
+                <h2>Products Management</h2>
+                <div className="search-bar">
+                  <input
+                    type="text"
+                    placeholder="Search products..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                  />
+                </div>
               </div>
               {loading ? (
                 <div className="loading-spinner">Loading...</div>
@@ -187,7 +198,7 @@ const AdminDashboard: React.FC = () => {
                           <p>{product.price}</p>
                           <div className="product-actions">
                             <Link to={`/admin/edit/${product.id}`}>Edit</Link>
-                            <button onClick={() => handleDeleteProduct(product.id)}>Delete</button>
+                            <button onClick={() => handleDeleteClick(product.id, 'product')}>Delete</button>
                           </div>
                         </div>
                       </div>
@@ -199,57 +210,78 @@ const AdminDashboard: React.FC = () => {
             </div>
           ) : (
             <div className="users-section">
-              <h2>Users Management</h2>
-              <div className="search-bar">
-                <input
-                  type="text"
-                  placeholder="Search users by email or ID..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                />
+              <div className="section-header">
+                <h2>Users Management</h2>
+                <div className="search-bar">
+                  <input
+                    type="text"
+                    placeholder="Search users..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                  />
+                </div>
               </div>
-              <div className="users-table-container">
-                <table className="users-table">
-                  <thead>
-                    <tr>
-                      <th>User</th>
-                      <th>ID</th>
-                      <th>Email</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {filteredUsers.map(user => (
-                      <tr key={user.id}>
-                        <td>
-                          <div className="user-info">
-                            <div className="user-avatar">
-                              {getInitials(user.email)}
-                            </div>
-                          </div>
-                        </td>
-                        <td>{user.id}</td>
-                        <td>{user.email}</td>
-                        <td>
-                          <div className="user-actions">
-                            <button className="view-button">View Details</button>
-                            <button 
-                              className="delete-button"
-                              onClick={() => handleDeleteUser(user.id)}
-                            >
-                              Delete
-                            </button>
-                          </div>
-                        </td>
+              {loading ? (
+                <div className="loading-spinner">Loading...</div>
+              ) : (
+                <div className="users-table-container">
+                  <table className="users-table">
+                    <thead>
+                      <tr>
+                        <th>User</th>
+                        <th>ID</th>
+                        <th>Email</th>
+                        <th>Actions</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+                    </thead>
+                    <tbody>
+                      {filteredUsers.map(user => (
+                        <tr key={user.id}>
+                          <td>
+                            <div className="user-info">
+                              <div className="user-avatar">
+                                {getInitials(user.email)}
+                              </div>
+                              <div className="user-email">{user.email}</div>
+                            </div>
+                          </td>
+                          <td>{user.id}</td>
+                          <td>{user.email}</td>
+                          <td>
+                            <div className="user-actions">
+                              <button 
+                                className="delete-button"
+                                onClick={() => handleDeleteClick(user.id, 'user')}
+                              >
+                                Delete User
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
             </div>
           )}
         </main>
       </div>
+      {showConfirmDialog && (
+        <div className="confirm-dialog-overlay">
+          <div className="confirm-dialog">
+            <h3>Confirm Delete</h3>
+            <p>Are you sure you want to delete this {itemToDelete?.type}? This action cannot be undone.</p>
+            <div className="confirm-dialog-buttons">
+              <button className="confirm-delete" onClick={handleConfirmDelete}>Delete</button>
+              <button className="cancel-delete" onClick={() => setShowConfirmDialog(false)}>Cancel</button>
+            </div>
+          </div>
+        </div>
+      )}
+      <footer className="admin-footer">
+        <p>&copy; {new Date().getFullYear()} GPK Solution. All rights reserved.</p>
+      </footer>
     </div>
   );
 };

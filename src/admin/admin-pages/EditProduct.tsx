@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
+import { checkAuth } from '../../utils/authUtils';
 
 const EditProduct: React.FC = () => {
   const { id } = useParams();
@@ -9,6 +10,10 @@ const EditProduct: React.FC = () => {
   const [price, setPrice] = useState('');
   const [description, setDescription] = useState('');
   const [image, setImage] = useState('');
+
+  useEffect(() => {
+    checkAuth();
+  }, []);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -43,37 +48,99 @@ const EditProduct: React.FC = () => {
 
   return (
     <div className="admin-dashboard">
-      <form onSubmit={handleSubmit} className="edit-product-form">
-        <h2>Edit Product</h2>
-        <input
-          type="text"
-          placeholder="Product Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
-        <input
-          type="number"
-          placeholder="Price"
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
-          required
-        />
-        <textarea
-          placeholder="Description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          required
-        />
-        <input
-          type="url"
-          placeholder="Image URL"
-          value={image}
-          onChange={(e) => setImage(e.target.value)}
-          required
-        />
-        <button type="submit">Update Product</button>
-      </form>
+      <header className="admin-header">
+        <div className="header-content">
+          <Link to="/admin" className="logo">BLUE TAG ADMIN</Link>
+          <nav className="admin-nav">
+            <Link to="/home">View Store</Link>
+            <button onClick={() => {
+              localStorage.removeItem('token');
+              window.location.href = '/login';
+            }}>Logout</button>
+          </nav>
+        </div>
+      </header>
+
+      <div className="admin-container">
+        <main className="admin-content full-width">
+          <form onSubmit={handleSubmit} className="edit-product-form">
+            <h2>Edit Product</h2>
+            <div className="edit-product-current">
+              <img src={image} alt={name} className="product-preview" />
+              <div className="product-details">
+                <div className="detail-row">
+                  <label>Current Product Details:</label>
+                  <table className="details-table">
+                    <tbody>
+                      <tr>
+                        <td><strong>Name:</strong></td>
+                        <td>{name}</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Price:</strong></td>
+                        <td>${price}</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Description:</strong></td>
+                        <td>{description}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div className="input-group">
+              <div className="input-box">
+                <label>Update Name</label>
+                <input
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  required
+                />
+              </div>
+            </div>
+
+            <div className="input-group">
+              <div className="input-box">
+                <label>Update Price ($)</label>
+                <input
+                  type="number"
+                  value={price}
+                  onChange={(e) => setPrice(e.target.value)}
+                  required
+                />
+              </div>
+            </div>
+
+            <div className="input-group">
+              <div className="input-box">
+                <label>Update Description</label>
+                <textarea
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                  required
+                />
+              </div>
+            </div>
+
+            <div className="input-group">
+              <div className="input-box">
+                <label>Update Image URL</label>
+                <input
+                  type="url"
+                  value={image}
+                  onChange={(e) => setImage(e.target.value)}
+                  required
+                />
+              </div>
+            </div>
+
+            <button type="submit">Update Product</button>
+          </form>
+        </main>
+      </div>
     </div>
   );
 };
