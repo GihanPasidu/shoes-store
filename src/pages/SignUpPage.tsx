@@ -19,9 +19,9 @@ const SignUpPage: React.FC = () => {
 
     const newUser = { email, password };
 
-    axios.post('http://localhost:5000/signup', newUser)
+    axios.post('http://localhost:5001/signup', newUser)
       .then(response => {
-        console.log('User signed up:', response.data);
+        localStorage.setItem('token', response.data.token);
         navigate('/home'); // Navigate to HomePage after sign up
       })
       .catch(err => {

@@ -1,17 +1,27 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import '../styles/LoginPage.css';
 
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    // Add login logic here
-    console.log('Logging in with', { email, password });
-    navigate('/home'); // Navigate to HomePage after login
+    setError('');
+
+    axios.post('http://localhost:5001/users', { email, password })
+      .then(response => {
+        localStorage.setItem('token', response.data.token);
+        navigate('/home');
+      })
+      .catch(err => {
+        console.error('Login error:', err);
+        setError('Invalid email or password');
+      });
   };
 
   return (
@@ -21,6 +31,7 @@ const LoginPage: React.FC = () => {
       </header>
       <form className="login-form" onSubmit={handleLogin}>
         <h2>Login</h2>
+        {error && <p className="error">{error}</p>}
         <input
           type="email"
           placeholder="Email"
