@@ -13,6 +13,7 @@ interface Shoe {
 
 const HomePage: React.FC = () => {
   const [shoes, setShoes] = useState<Shoe[]>([]);
+  const [searchQuery, setSearchQuery] = useState('');
   const navigate = useNavigate();
   const { addToCart } = useCart();
 
@@ -26,14 +27,38 @@ const HomePage: React.FC = () => {
     navigate(`/product/${id}`);
   };
 
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Implement search functionality here
+    console.log('Searching for:', searchQuery);
+  };
+
   return (
     <div className="home-page">
       <header className="header">
-        <h1>BLUE TAG</h1>
+        <div className="header-content">
+          <div className="header-left">
+            <Link to="/home" className="logo">BLUE TAG</Link>
+            <form className="search-bar" onSubmit={handleSearch}>
+              <input
+                type="text"
+                className="search-input"
+                placeholder="Search for products..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+              <button type="submit" className="search-button">
+                <i className="fas fa-search"></i>
+              </button>
+            </form>
+          </div>
+          <div className="header-right">
+            <Link to="/cart" className="cart-link">
+              <i className="fas fa-shopping-cart"></i>
+            </Link>
+          </div>
+        </div>
       </header>
-      <nav className="shortcut-bar">
-        <Link to="/cart">Cart</Link>
-      </nav>
       <h1>Our Shoe Collection</h1>
       <div className="shoe-list">
         {shoes.map(shoe => (

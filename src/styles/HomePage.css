@@ -11,15 +11,99 @@
 
 .header {
     background-color: #1a237e;
-    color: #fff;
-    padding: 30px 0;
+    padding: 15px 0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.header h1 {
-    margin: 0;
-    font-size: 32px;
-    font-weight: 500;
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo {
+    color: #fff;
+    font-size: 34px;
+    font-weight: 800;
+    text-decoration: none;
+    margin-left: 6rem;
+    margin-right: 5rem;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 20px;
+    overflow: hidden;
+    width: 500px;
+}
+
+.search-input {
+    flex: 1;
+    padding: 10px 15px;
+    border: none;
+    font-size: 14px;
+    width: 100%;
+}
+
+.search-button {
+    background-color: #9497b4;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+}
+
+.search-button i {
+    font-size: 20px;
+    /* Increased from 16px to 20px */
+}
+
+.search-button:hover {
+    background-color: #757df1;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.cart-link {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    background-color: #04bbc2;
+    margin-right: 6rem;
+}
+
+.cart-link:hover {
+    background-color: #00e1ff;
+}
+
+.cart-link i {
+    font-size: 24px;
+    /* Increased from 18px to 24px */
 }
 
 .shortcut-bar {
