@@ -39,11 +39,22 @@ const ProductPage: React.FC = () => {
         <Link to="/home">Home</Link>
         <Link to="/cart">Cart</Link>
       </nav>
-      <img src={shoe.image} alt={shoe.name} />
-      <h1>{shoe.name}</h1>
-      <p>{shoe.description}</p>
-      <p>{shoe.price}</p>
-      <button onClick={() => addToCart(shoe.id.toString())}>Add to Cart</button>
+      <div className="product-container">
+        <div className="product-image">
+          <img src={shoe.image} alt={shoe.name} />
+        </div>
+        <div className="product-details">
+          <h1>{shoe.name}</h1>
+          <p>{shoe.description}</p>
+          <p className="price">{shoe.price}</p>
+          <button 
+            className="add-to-cart-btn"
+            onClick={() => addToCart(shoe.id.toString())}
+          >
+            Add to Cart
+          </button>
+        </div>
+      </div>
       <footer className="footer">
         <p>&copy; 2023 GPK Solution</p>
       </footer>

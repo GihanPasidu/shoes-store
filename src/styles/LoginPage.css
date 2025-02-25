@@ -2,73 +2,94 @@
 
 .login-page {
     text-align: center;
+    background-color: #f8f9fa;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #f0f0f0;
 }
 
 .header {
-    background-color: #007bff;
+    background-color: #1a237e;
     color: #fff;
-    padding: 5px 0;
-    /* Reduced padding */
-    text-align: center;
-    font-size: 20px;
-    /* Reduced font size */
-    font-weight: bold;
-    width: 100%;
+    padding: 30px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 500;
 }
 
 .login-form {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     width: 90%;
-    max-width: 300px;
-    margin-top: 50px;
+    max-width: 400px;
+    margin: 60px auto;
 }
 
 .login-form h2 {
-    margin-bottom: 20px;
+    color: #1a237e;
+    font-size: 24px;
+    margin-bottom: 30px;
 }
 
 .login-form input {
-    width: 90%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
 }
 
 .login-form button {
     width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: #fff;
+    padding: 12px;
+    background-color: #1a237e;
+    color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
 }
 
 .login-form button:hover {
-    background-color: #0056b3;
+    background-color: #283593;
+    transform: translateY(-2px);
 }
 
 .login-form p {
-    margin-top: 10px;
+    margin-top: 20px;
+    color: #666;
+}
+
+.login-form a {
+    color: #1a237e;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.login-form a:hover {
+    text-decoration: underline;
+}
+
+.error {
+    color: #dc3545;
+    margin-bottom: 20px;
+    font-size: 14px;
 }
 
 .footer {
-    background-color: #007bff;
+    background-color: #1a237e;
     color: #fff;
-    padding: 5px 0;
-    /* Reduced padding */
+    padding: 8px 0;
     text-align: center;
-    font-size: 12px;
-    /* Reduced font size */
+    font-size: 11px;
     margin-top: auto;
     width: 100%;
 }

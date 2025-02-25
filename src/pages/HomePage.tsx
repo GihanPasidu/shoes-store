@@ -38,10 +38,18 @@ const HomePage: React.FC = () => {
       <div className="shoe-list">
         {shoes.map(shoe => (
           <div key={shoe.id} className="shoe-item">
-            <img src={shoe.image} alt={shoe.name} onClick={() => handleViewDetails(shoe.id)} />
-            <h3 onClick={() => handleViewDetails(shoe.id)}>{shoe.name}</h3>
-            <p onClick={() => handleViewDetails(shoe.id)}>{shoe.price}</p>
-            <button onClick={() => addToCart(shoe.id.toString())}>Add to Cart</button>
+            <div className="shoe-item-content">
+              <Link to={`/product/${shoe.id}`}>
+                <img src={shoe.image} alt={shoe.name} />
+                <div className="shoe-item-details">
+                  <h3>{shoe.name}</h3>
+                  <p>{shoe.price}</p>
+                </div>
+              </Link>
+              <button onClick={() => addToCart(shoe.id.toString())}>
+                Add to Cart
+              </button>
+            </div>
           </div>
         ))}
       </div>

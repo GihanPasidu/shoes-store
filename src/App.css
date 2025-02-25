@@ -3,11 +3,20 @@
 body {
     margin: 0;
     padding: 0;
-    background-image: url('/src/assets/download.jpg');
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
-    background-repeat: no-repeat;
-    background-color: #f0f0f0;
-    /* Fallback background color */
+    background-color: #f8f9fa;
+    font-family: 'Roboto', sans-serif;
+}
+
+.app-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content {
+    flex: 1;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
 }

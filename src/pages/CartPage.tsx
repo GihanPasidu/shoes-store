@@ -63,29 +63,53 @@ const CartPage: React.FC = () => {
       <nav className="shortcut-bar">
         <Link to="/home">Home</Link>
       </nav>
-      <h1>Your Cart</h1>
+      <h1>Shopping Cart</h1>
       {cartItems.length === 0 ? (
-        <p>No items in cart yet.</p>
+        <div className="empty-cart">
+          <h2>Your cart is empty</h2>
+          <Link to="/home" className="checkout-button">Continue Shopping</Link>
+        </div>
       ) : (
         <>
-          <ul>
-            {cartItems.map(item => (
-              <li key={item.id} className="cart-item">
-                <input
-                  type="checkbox"
-                  checked={selectedItems.includes(item.id.toString())}
-                  onChange={() => handleSelectChange(item.id.toString())}
-                />
-                <img src={item.image} alt={item.name} className="cart-item-image" />
-                <Link to={`/product/${item.id}`}>{item.name}</Link>
-                <p>{item.price}</p>
-              </li>
-            ))}
-          </ul>
-          <button className="remove-button" onClick={handleRemoveSelected}>Remove</button>
-          <div className="total-price">
-            <h2>Total Price: ${totalPrice.toFixed(2)}</h2>
-            <button className="checkout-button" onClick={handleCheckout}>Checkout</button>
+          <div className="cart-container">
+            <div className="cart-items-wrapper">
+              <div className="cart-items">
+                {cartItems.map(item => (
+                  <div key={item.id} className="cart-item">
+                    <input
+                      type="checkbox"
+                      className="cart-item-checkbox"
+                      checked={selectedItems.includes(item.id.toString())}
+                      onChange={() => handleSelectChange(item.id.toString())}
+                    />
+                    <img src={item.image} alt={item.name} className="cart-item-image" />
+                    <div className="cart-item-details">
+                      <h3>{item.name}</h3>
+                      <p>{item.price}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <button 
+                className="remove-selected-button"
+                onClick={handleRemoveSelected}
+                disabled={selectedItems.length === 0}
+              >
+                Remove Selected
+              </button>
+            </div>
+          </div>
+          <div className="checkout-section">
+            <h2>Order Summary</h2>
+            <p>Selected Items: {selectedItems.length}</p>
+            <h3>Total: ${totalPrice.toFixed(2)}</h3>
+            <button 
+              className="checkout-button" 
+              onClick={handleCheckout}
+              disabled={selectedItems.length === 0}
+            >
+              Proceed to Checkout
+            </button>
           </div>
         </>
       )}
