@@ -12,9 +12,13 @@
 
 .header {
     background-color: #1a237e;
-    color: #fff;
-    padding: 30px 0;
+    padding: 15px 0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
 }
 
 .header h1 {
@@ -40,6 +44,14 @@
 
 .shortcut-bar a:hover {
     color: #e3f2fd;
+}
+
+.cart-page h1 {
+    margin-top: 120px;
+    color: #1a237e;
+    font-size: 28px;
+    margin-bottom: 10px;
+    /* Reduced from 20px to 10px */
 }
 
 .cart-items {
@@ -94,10 +106,6 @@
     margin-right: 10px;
 }
 
-.cart-item-actions {
-    display: none;
-}
-
 .checkout-section {
     background: white;
     padding: 25px;
@@ -112,49 +120,12 @@
     margin-bottom: 20px;
 }
 
-.button-group {
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-.remove-button {
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: 500;
-}
-
-.remove-button:hover {
-    background-color: #c82333;
-    transform: translateY(-2px);
-}
-
-.checkout-button {
-    background-color: #1a237e;
-    color: white;
-    border: none;
-    padding: 12px 30px;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: 500;
-    font-size: 1.1rem;
-}
-
-.checkout-button:hover {
-    background-color: #283593;
-    transform: translateY(-2px);
-}
-
 .cart-container {
+    margin-top: 20px;
+    /* Reduced from 120px to 20px since h1 now handles the initial spacing */
     max-width: 800px;
-    margin: 30px auto;
+    margin-left: auto;
+    margin-right: auto;
     padding: 0 20px;
     position: relative;
 }

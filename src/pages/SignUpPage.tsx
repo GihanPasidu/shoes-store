@@ -33,7 +33,11 @@ const SignUpPage: React.FC = () => {
   return (
     <div className="signup-page">
       <header className="header">
-        <h1>BLUE TAG</h1>
+        <div className="header-content">
+          <div className="header-left">
+            <span className="logo">BLUE TAG</span>
+          </div>
+        </div>
       </header>
       <form className="signup-form" onSubmit={handleSignUp}>
         <h2>Sign Up</h2>

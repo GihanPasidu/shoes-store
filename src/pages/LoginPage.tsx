@@ -27,7 +27,11 @@ const LoginPage: React.FC = () => {
   return (
     <div className="login-page">
       <header className="header">
-        <h1>BLUE TAG</h1>
+        <div className="header-content">
+          <div className="header-left">
+            <span className="logo">BLUE TAG</span>
+          </div>
+        </div>
       </header>
       <form className="login-form" onSubmit={handleLogin}>
         <h2>Login</h2>

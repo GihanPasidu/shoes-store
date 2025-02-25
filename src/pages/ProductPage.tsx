@@ -33,12 +33,17 @@ const ProductPage: React.FC = () => {
   return (
     <div className="product-page">
       <header className="header">
-        <h1>BLUE TAG</h1>
+        <div className="header-content">
+          <div className="header-left">
+            <Link to="/home" className="logo">BLUE TAG</Link>
+          </div>
+          <div className="header-right">
+            <Link to="/cart" className="cart-link">
+              <i className="fas fa-shopping-cart"></i>
+            </Link>
+          </div>
+        </div>
       </header>
-      <nav className="shortcut-bar">
-        <Link to="/home">Home</Link>
-        <Link to="/cart">Cart</Link>
-      </nav>
       <div className="product-container">
         <div className="product-image">
           <img src={shoe.image} alt={shoe.name} />
