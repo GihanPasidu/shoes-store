@@ -13,6 +13,7 @@ In the project directory, you can run:
 ### 🚀 `npm start`
 
 Runs the app in the development mode.\
+
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.\
@@ -21,6 +22,7 @@ You will also see any lint errors in the console.
 ### 🧪 `npm test`
 
 Launches the test runner in the interactive watch mode.\
+
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### 📦 `npm run build`
@@ -38,15 +40,20 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 #### 📊 `json-server --watch %USERPROFILE%\src\data\db.json --port 5000`
 
 Runs the product database server on port 5000.\
+
 This database contains product information including shoes inventory, prices, categories, and product details.\
+
 The database file should be located at `C:\Users\<your_username>\db.json`\
+
 Open [http://localhost:5000](http://localhost:5000) to view the database.
 
 #### 👥 `json-server --watch %USERPROFILE%\src\data\user.json --port 5001`
 
 Runs the user management database server on port 5001.\
+
 This database contains user profiles, authentication data, and shopping cart information.\
 The database file should be located at `C:\Users\<your_username>\user.json`\
+
 Open [http://localhost:5001](http://localhost:5001) to view the database.
 
 **Note:** Replace `%USERPROFILE%` with `C:\Users\<your_username>` or use the environment variable as is.
