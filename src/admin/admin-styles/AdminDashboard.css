@@ -1,6 +1,9 @@
 .admin-dashboard {
     min-height: 100vh;
     background-color: #f5f5f5;
+    background-image: url('https://www.toptal.com/designers/subtlepatterns/uploads/spikes.png');
+    background-repeat: repeat;
+    background-attachment: fixed;
 }
 
 .admin-header {
@@ -222,116 +225,6 @@
     border: none;
     border-radius: 10px;
     cursor: pointer;
-}
-
-.add-product-form {
-    max-width: 600px;
-    margin: 100px auto;
-    padding: 2rem;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.add-product-form h2 {
-    margin-bottom: 1.5rem;
-    color: #1a237e;
-}
-
-.add-product-form input,
-.add-product-form textarea {
-    width: 100%;
-    padding: 0.8rem;
-    margin-bottom: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 1rem;
-}
-
-.add-product-form textarea {
-    min-height: 100px;
-    resize: vertical;
-}
-
-.add-product-form button {
-    width: 100%;
-    padding: 1rem;
-    background-color: #1a237e;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.add-product-form button:hover {
-    background-color: #0d47a1;
-}
-
-.edit-product-form {
-    max-width: 600px;
-    margin: 100px auto;
-    padding: 2rem;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.edit-product-form h2 {
-    margin-bottom: 1.5rem;
-    color: #1a237e;
-}
-
-.edit-product-form input,
-.edit-product-form textarea {
-    width: 100%;
-    padding: 0.8rem;
-    margin-bottom: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 1rem;
-}
-
-.edit-product-form textarea {
-    min-height: 100px;
-    resize: vertical;
-}
-
-.edit-product-form button {
-    width: 100%;
-    padding: 1rem;
-    background-color: #1a237e;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.edit-product-form button:hover {
-    background-color: #0d47a1;
-}
-
-.edit-product-form .input-group {
-    margin-bottom: 1.5rem;
-}
-
-.edit-product-form .input-label {
-    display: block;
-    color: #666;
-    font-size: 0.9rem;
-    margin-bottom: 0.5rem;
-}
-
-.edit-product-form .current-value {
-    background: #f8f9fa;
-    padding: 0.5rem;
-    border-radius: 4px;
-    color: #1a237e;
-    font-size: 0.9rem;
-    margin-bottom: 0.5rem;
 }
 
 .search-bar {
@@ -807,14 +700,6 @@
         flex-direction: column;
         gap: 0.5rem;
     }
-    .add-product-form {
-        margin: 80px 1rem;
-        padding: 1rem;
-    }
-    .edit-product-form {
-        margin: 80px 1rem;
-        padding: 1rem;
-    }
     .admin-footer {
         padding: 0.8rem;
     }
@@ -1192,5 +1077,8 @@
     .login-popup .buttons {
         flex-direction: column;
         gap: 0.8rem;
+    }
+    .login-popup .buttons button {
+        width: 100%;
     }
 }

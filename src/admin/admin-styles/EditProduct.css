@@ -1,0 +1,106 @@
+.edit-product-form {
+    max-width: 600px;
+    margin: 100px auto;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.edit-product-form h2 {
+    margin-bottom: 1.5rem;
+    color: #1a237e;
+}
+
+.edit-product-form input,
+.edit-product-form textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.edit-product-form textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.edit-product-form input:focus,
+.edit-product-form textarea:focus {
+    border-color: #1a237e;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(26, 35, 126, 0.1);
+}
+
+.edit-product-form button {
+    width: 100%;
+    padding: 1rem;
+    background-color: #1a237e;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.edit-product-form button:hover {
+    background-color: #0d47a1;
+}
+
+.edit-product-current {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.edit-product-current .product-preview {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.edit-product-current .current-details {
+    text-align: left;
+    padding: 1rem;
+}
+
+.input-group {
+    margin-bottom: 1.5rem;
+}
+
+.input-box {
+    position: relative;
+}
+
+.input-box label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #666;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.input-box .current-value {
+    color: #666;
+    font-size: 0.85rem;
+    margin-left: 0.5rem;
+    padding: 0.2rem 0.5rem;
+    background: #f0f0f0;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+@media screen and (max-width: 480px) {
+    .edit-product-form {
+        margin: 80px 1rem;
+        padding: 1rem;
+    }
+}
