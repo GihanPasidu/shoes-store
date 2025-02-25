@@ -12,7 +12,6 @@
 
 .header {
     background-color: #1a237e;
-    color: #fff;
     padding: 30px 0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     position: fixed;
@@ -36,6 +35,9 @@
     font-size: 34px;
     font-weight: 800;
     text-decoration: none;
+    white-space: nowrap;
+    display: inline-block;
+    line-height: 1;
     margin-left: 6rem;
 }
 
@@ -94,6 +96,7 @@
 .login-form button:hover {
     background-color: #283593;
     transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .login-form p {

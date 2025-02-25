@@ -5,9 +5,9 @@ import ProductPage from './pages/ProductPage';
 import CartPage from './pages/CartPage';
 import SignUpPage from './pages/SignUpPage';
 import LoginPage from './pages/LoginPage';
-import AdminDashboard from './pages/admin/AdminDashboard';
-import AddProduct from './pages/admin/AddProduct';
-import EditProduct from './pages/admin/EditProduct';
+import AdminDashboard from './admin/admin-pages/AdminDashboard';
+import AddProduct from './admin/admin-pages/AddProduct';
+import EditProduct from './admin/admin-pages/EditProduct';
 
 const PrivateRoute = ({ children }: { children: React.ReactElement }) => {
   const token = localStorage.getItem('token');
@@ -48,12 +48,12 @@ const App = () => {
               <AdminDashboard />
             </AdminRoute>
           } />
-          <Route path="/admin/add-product" element={
+          <Route path="/admin/add" element={
             <AdminRoute>
               <AddProduct />
             </AdminRoute>
           } />
-          <Route path="/admin/edit-product/:id" element={
+          <Route path="/admin/edit/:id" element={
             <AdminRoute>
               <EditProduct />
             </AdminRoute>

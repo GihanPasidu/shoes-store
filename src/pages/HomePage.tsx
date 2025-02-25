@@ -14,14 +14,26 @@ interface Shoe {
 const HomePage: React.FC = () => {
   const [shoes, setShoes] = useState<Shoe[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
+  const [filteredShoes, setFilteredShoes] = useState<Shoe[]>([]);
   const navigate = useNavigate();
   const { addToCart } = useCart();
 
   useEffect(() => {
     axios.get('http://localhost:5000/shoes')
-      .then(response => setShoes(response.data))
+      .then(response => {
+        setShoes(response.data);
+        setFilteredShoes(response.data);
+      })
       .catch(err => console.error('Error fetching shoes:', err));
   }, []);
+
+  useEffect(() => {
+    const filtered = shoes.filter(shoe =>
+      shoe.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      shoe.price.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setFilteredShoes(filtered);
+  }, [searchQuery, shoes]);
 
   const handleViewDetails = (id: number) => {
     navigate(`/product/${id}`);
@@ -29,8 +41,6 @@ const HomePage: React.FC = () => {
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    // Implement search functionality here
-    console.log('Searching for:', searchQuery);
   };
 
   return (
@@ -43,13 +53,10 @@ const HomePage: React.FC = () => {
               <input
                 type="text"
                 className="search-input"
-                placeholder="Search for products..."
+                placeholder="Search products..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
-              <button type="submit" className="search-button">
-                <i className="fas fa-search"></i>
-              </button>
             </form>
           </div>
           <div className="header-right">
@@ -61,7 +68,7 @@ const HomePage: React.FC = () => {
       </header>
       <h1>Our Shoe Collection</h1>
       <div className="shoe-list">
-        {shoes.map(shoe => (
+        {filteredShoes.map(shoe => (
           <div key={shoe.id} className="shoe-item">
             <div className="shoe-item-content">
               <Link to={`/product/${shoe.id}`}>

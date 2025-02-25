@@ -1,0 +1,634 @@
+.admin-dashboard {
+    min-height: 100vh;
+    background-color: #f5f5f5;
+}
+
+.admin-header {
+    background-color: #1a237e;
+    padding: 1rem 2rem;
+    color: white;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-sizing: border-box;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.admin-nav {
+    display: flex;
+    gap: 1rem;
+}
+
+.admin-nav a,
+.admin-nav button {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    border: 1px solid white;
+    background: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.admin-container {
+    display: flex;
+    padding-top: 64px;
+    min-height: calc(100vh - 64px);
+    max-width: 1400px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.admin-sidebar {
+    width: 250px;
+    background-color: white;
+    padding: 2rem 1rem;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    height: calc(100vh - 64px);
+    overflow-y: auto;
+    transition: transform 0.3s ease;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-buttons {
+    flex: 1;
+}
+
+.admin-sidebar.collapsed {
+    transform: translateX(-250px);
+}
+
+.tab-button {
+    width: 80%;
+    padding: 1rem;
+    text-align: left;
+    background: none;
+    border: none;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.tab-button.active {
+    background-color: #1a237e;
+    color: white;
+}
+
+.add-product-button {
+    display: block;
+    width: 75%;
+    padding: 1rem;
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 4px;
+    margin: 5rem auto;
+}
+
+.admin-content {
+    flex: 1;
+    padding: 2rem 3rem;
+    margin-left: 270px;
+    /* Increased from 250px */
+    width: calc(100% - 270px);
+    box-sizing: border-box;
+    transition: margin-left 0.3s ease, width 0.3s ease;
+}
+
+.admin-content.full-width {
+    margin-left: 0;
+    width: 100%;
+}
+
+.sidebar-toggle {
+    position: fixed;
+    left: 250px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 101;
+    background: #1a237e;
+    color: white;
+    border: none;
+    padding: 15px 8px;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    transition: left 0.3s ease;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 25px;
+}
+
+.sidebar-toggle.collapsed {
+    left: 0;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2.5rem;
+    /* Increased from 2rem */
+    margin-top: 2rem;
+    padding: 0.5rem;
+}
+
+.product-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.product-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.product-info {
+    padding: 1rem;
+}
+
+.product-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.product-actions a,
+.product-actions button {
+    flex: 1;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+}
+
+.product-actions a {
+    background-color: #1a237e;
+    color: white;
+}
+
+.product-actions button {
+    background-color: #dc3545;
+    color: white;
+}
+
+.users-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.users-table th,
+.users-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.users-table th {
+    background-color: #1a237e;
+    color: white;
+}
+
+.view-button {
+    padding: 0.5rem 1rem;
+    background-color: #1a237e;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.add-product-form {
+    max-width: 600px;
+    margin: 100px auto;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.add-product-form h2 {
+    margin-bottom: 1.5rem;
+    color: #1a237e;
+}
+
+.add-product-form input,
+.add-product-form textarea {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.add-product-form textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.add-product-form button {
+    width: 100%;
+    padding: 1rem;
+    background-color: #1a237e;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-product-form button:hover {
+    background-color: #0d47a1;
+}
+
+.search-bar {
+    position: relative;
+    margin: 1rem 0;
+    width: 100%;
+    max-width: 400px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 1rem 1rem 1rem 2.5rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23999"><path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 0 0 1.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 0 0-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 0 0 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: 12px center;
+    background-size: 20px;
+}
+
+.search-bar input:focus {
+    outline: none;
+    border-color: #1a237e;
+    box-shadow: 0 0 0 2px rgba(26, 35, 126, 0.1);
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+}
+
+.pagination button {
+    padding: 0.5rem 1rem;
+    border: 1px solid #1a237e;
+    background-color: white;
+    color: #1a237e;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.pagination button.active {
+    background-color: #1a237e;
+    color: white;
+}
+
+.loading-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+}
+
+.products-section h2 {
+    margin-bottom: 1.5rem;
+    color: #1a237e;
+}
+
+.products-section {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    margin-top: 1rem;
+}
+
+.users-section {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    margin-top: 1rem;
+}
+
+
+/* Remove these classes */
+
+.users-grid,
+.user-card,
+.users-list,
+.user-list-item,
+.user-list-info,
+.user-list-actions,
+.view-toggle {
+    display: none;
+}
+
+
+/* Update users table styles */
+
+.users-table-container {
+    margin-top: 2rem;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.users-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.users-table th {
+    background: #1a237e;
+    color: white;
+    padding: 1rem;
+    text-align: left;
+}
+
+.users-table td {
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+}
+
+.users-table tr:hover {
+    background-color: #f8f9fa;
+}
+
+.users-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.user-card {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.user-avatar {
+    width: 50px;
+    height: 50px;
+    background: #1a237e;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.2rem;
+}
+
+.user-details h3 {
+    margin: 0;
+    color: #1a237e;
+}
+
+.user-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.user-actions button {
+    flex: 1;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: opacity 0.3s;
+}
+
+.user-actions button:hover {
+    opacity: 0.9;
+}
+
+.view-button {
+    background-color: #1a237e;
+    color: white;
+}
+
+.delete-button {
+    background-color: #dc3545;
+    color: white;
+}
+
+.view-toggle {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.view-toggle button {
+    padding: 0.5rem 1rem;
+    border: 1px solid #1a237e;
+    background: white;
+    color: #1a237e;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.view-toggle button.active {
+    background: #1a237e;
+    color: white;
+}
+
+.users-list {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.user-list-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+}
+
+.user-list-item:last-child {
+    border-bottom: none;
+}
+
+.user-list-info {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.user-list-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.users-table-container {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 1rem;
+}
+
+.users-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.users-table th,
+.users-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.users-table th {
+    background: #1a237e;
+    color: white;
+    font-weight: 500;
+}
+
+.users-table tr:hover {
+    background-color: #f8f9fa;
+}
+
+.users-table td .user-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.users-table .user-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+
+/* Add responsive styles */
+
+@media screen and (max-width: 768px) {
+    .admin-sidebar {
+        width: 200px;
+        position: fixed;
+        left: 0;
+        transform: translateX(0);
+    }
+    .admin-sidebar.collapsed {
+        transform: translateX(-200px);
+    }
+    .admin-sidebar.expanded {
+        transform: translateX(0);
+    }
+    .admin-content {
+        margin-left: 220px;
+        /* Adjusted for smaller sidebar */
+        width: calc(100% - 220px);
+        padding: 1.5rem;
+        transition: margin-left 0.3s ease, width 0.3s ease;
+    }
+    .admin-content.full-width {
+        margin-left: 0;
+        width: 100%;
+    }
+    .sidebar-toggle {
+        left: 200px;
+        transition: left 0.3s ease;
+    }
+    .sidebar-toggle.collapsed {
+        left: 0;
+    }
+    .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+        padding: 0;
+    }
+    .users-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+    .search-bar {
+        max-width: none;
+        margin: 1rem 0 2rem 0;
+    }
+    .product-card {
+        min-width: 200px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .admin-header {
+        padding: 1rem;
+    }
+    .admin-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+    }
+    .admin-nav a,
+    .admin-nav button {
+        width: calc(50% - 0.5rem);
+        text-align: center;
+    }
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+    .product-actions {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    .add-product-form {
+        margin: 80px 1rem;
+        padding: 1rem;
+    }
+}

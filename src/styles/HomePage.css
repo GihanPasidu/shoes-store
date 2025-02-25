@@ -32,16 +32,21 @@
 .header-left {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 100px;
+    /* Increased from 30px */
 }
 
 .logo {
     color: #fff;
-    font-size: 34px;
+    font-size: 28px;
     font-weight: 800;
     text-decoration: none;
-    margin-left: 6rem;
-    margin-right: 5rem;
+    white-space: nowrap;
+    display: inline-block;
+    line-height: 1;
+    height: 40px;
+    margin-left: 40px;
+    /* Added margin */
 }
 
 .search-bar {
@@ -50,37 +55,19 @@
     background-color: white;
     border-radius: 20px;
     overflow: hidden;
-    width: 500px;
+    width: 300px;
+    height: 35px;
+    margin-left: 40px;
+    /* Added margin */
 }
 
 .search-input {
-    flex: 1;
-    padding: 10px 15px;
+    padding: 0 20px;
     border: none;
     font-size: 14px;
     width: 100%;
-}
-
-.search-button {
-    background-color: #9497b4;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 20px;
-}
-
-.search-button i {
-    font-size: 20px;
-    /* Increased from 16px to 20px */
-}
-
-.search-button:hover {
-    background-color: #757df1;
+    outline: none;
+    height: 100%;
 }
 
 .header-right {
@@ -95,7 +82,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px;
+    padding: 6px 12px;
     border-radius: 4px;
     transition: background-color 0.3s ease;
     background-color: #04bbc2;
@@ -122,7 +109,7 @@
 }
 
 .shoe-list {
-    margin-top: 120px;
+    margin-top: 100px;
     /* Add space for fixed header */
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -164,7 +151,7 @@
     padding: 8px 12px;
     border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
     position: relative;
     z-index: 3;
     margin-top: auto;
@@ -175,6 +162,8 @@
 
 .shoe-item button:hover {
     background-color: #283593;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .shoe-item-content {
