@@ -13,6 +13,11 @@
     background-color: #1a237e;
     padding: 15px 0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
 }
 
 .header-content {
@@ -136,6 +141,8 @@
 }
 
 .shoe-list {
+    margin-top: 120px;
+    /* Add space for fixed header */
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     gap: 30px;
