@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import '../styles/PaymentPage.css';
+import axios from 'axios';
 
 interface PaymentProps {
   amount?: number;
@@ -15,17 +16,79 @@ const PaymentPage: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { amount } = location.state as PaymentProps;
-  const { clearCart } = useCart();
+  const { clearCart, cart } = useCart();
+  const userEmail = localStorage.getItem('userEmail');
+
+  const updateShoeQuantities = async (items: string[]) => {
+    try {
+      const response = await axios.get('http://localhost:5000/shoes');
+      const shoes = response.data;
+      
+      // Count quantities of each item
+      const quantities = items.reduce((acc: {[key: string]: number}, id: string) => {
+        acc[id] = (acc[id] || 0) + 1;
+        return acc;
+      }, {});
+
+      // Update each shoe's quantity
+      const updatedShoes = shoes.map((shoe: any) => {
+        if (quantities[shoe.id]) {
+          return {
+            ...shoe,
+            quantity: shoe.quantity - quantities[shoe.id]
+          };
+        }
+        return shoe;
+      });
+
+      // Save updated quantities
+      await axios.put('http://localhost:5000/shoes', updatedShoes);
+    } catch (err) {
+      console.error('Error updating shoe quantities:', err);
+    }
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsProcessing(true);
-    // Simulate payment processing
-    setTimeout(() => {
-      setIsProcessing(false);
-      clearCart(); // Clear the cart after successful payment
-      navigate('/home'); // Redirect to home page
-    }, 2000);
+
+    axios.get('http://localhost:5001/users')
+      .then(async response => {
+        const user = response.data.find((u: any) => u.email === userEmail);
+        if (user) {
+          await updateShoeQuantities(cart);
+
+          const newOrder = {
+            orderId: `ORD${Date.now()}`,
+            userId: user.id,
+            items: cart,
+            totalAmount: amount,
+            paymentMethod: 'card',
+            status: 'paid',
+            date: new Date().toISOString(),
+            pickupDeadline: null
+          };
+
+          // Get all orders
+          const ordersRes = await axios.get('http://localhost:5001/orders');
+          let orders = ordersRes.data;
+          
+          // Add new order
+          if (!Array.isArray(orders)) {
+            orders = [];
+          }
+          
+          // Remove nested duplicates if any
+          orders = orders.filter((order: any) => !order[0] && !order[1]);
+          orders.push(newOrder);
+
+          // Update orders in database
+          await axios.post('http://localhost:5001/orders', orders);
+          clearCart();
+          navigate('/home');
+        }
+      })
+      .catch(err => console.error('Error:', err));
   };
 
   return (

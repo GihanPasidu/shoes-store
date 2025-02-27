@@ -1,52 +1,240 @@
 {
-    "users": [{
-            "id": "0001",
-            "name": "Example User",
-            "email": "example@gmail.com",
-            "password": "1234",
-            "role": "user"
+  "users": [
+    {
+      "id": "0001",
+      "name": "Example User",
+      "email": "example@gmail.com",
+      "password": "1234",
+      "role": "user"
+    },
+    {
+      "id": "0002",
+      "name": "Sarah Edwards",
+      "email": "sedgbers@gmail.com",
+      "password": "123456",
+      "role": "user"
+    },
+    {
+      "id": "0003",
+      "name": "John Smith",
+      "email": "example@gmail.com",
+      "password": "1234",
+      "role": "user"
+    },
+    {
+      "id": "0004",
+      "name": "George Harris",
+      "email": "ghfdbs@gmail.com",
+      "password": "7894",
+      "role": "user"
+    },
+    {
+      "id": "0005",
+      "name": "Arthur Brown",
+      "email": "arfhwrthb@gmail.com",
+      "password": "12345",
+      "role": "user"
+    },
+    {
+      "id": "0007",
+      "name": "GPK Manager",
+      "email": "gpk@gmail.com",
+      "password": "8080",
+      "role": "admin"
+    },
+    {
+      "id": "0008",
+      "name": "System Admin",
+      "email": "example@gmail.com",
+      "password": "8080",
+      "role": "admin"
+    }
+  ],
+  "orders": [
+    {
+      "orderId": "ORD001",
+      "userId": "0001",
+      "items": [],
+      "totalAmount": 0,
+      "paymentMethod": "",
+      "status": "",
+      "date": "",
+      "pickupDeadline": null
+    },
+    {
+      "0": {
+        "orderId": "ORD001",
+        "userId": "0001",
+        "items": [],
+        "totalAmount": 0,
+        "paymentMethod": "",
+        "status": "",
+        "date": "",
+        "pickupDeadline": null
+      },
+      "1": {
+        "orderId": "ORD1740668993430",
+        "userId": "0007",
+        "items": [
+          "3"
+        ],
+        "totalAmount": 80,
+        "paymentMethod": "store",
+        "status": "pending",
+        "date": "2025-02-27T15:09:53.430Z",
+        "pickupDeadline": "2025-02-28T14:30:00.000Z"
+      },
+      "id": "8630"
+    },
+    {
+      "0": {
+        "orderId": "ORD001",
+        "userId": "0001",
+        "items": [],
+        "totalAmount": 0,
+        "paymentMethod": "",
+        "status": "",
+        "date": "",
+        "pickupDeadline": null
+      },
+      "1": {
+        "0": {
+          "orderId": "ORD001",
+          "userId": "0001",
+          "items": [],
+          "totalAmount": 0,
+          "paymentMethod": "",
+          "status": "",
+          "date": "",
+          "pickupDeadline": null
         },
-        {
-            "id": "0002",
-            "name": "Sarah Edwards",
-            "email": "sedgbers@gmail.com",
-            "password": "123456",
-            "role": "user"
+        "1": {
+          "orderId": "ORD1740668993430",
+          "userId": "0007",
+          "items": [
+            "3"
+          ],
+          "totalAmount": 80,
+          "paymentMethod": "store",
+          "status": "pending",
+          "date": "2025-02-27T15:09:53.430Z",
+          "pickupDeadline": "2025-02-28T14:30:00.000Z"
         },
-        {
-            "id": "0003",
-            "name": "John Smith",
-            "email": "example@gmail.com",
-            "password": "1234",
-            "role": "user"
+        "id": "8630"
+      },
+      "2": {
+        "orderId": "ORD1740669455181",
+        "userId": "0007",
+        "items": [
+          "3"
+        ],
+        "totalAmount": 80,
+        "paymentMethod": "store",
+        "status": "pending",
+        "date": "2025-02-27T15:17:35.181Z",
+        "pickupDeadline": "2025-02-28T14:30:00.000Z"
+      },
+      "id": "3099"
+    },
+    {
+      "0": {
+        "orderId": "ORD001",
+        "userId": "0001",
+        "items": [],
+        "totalAmount": 0,
+        "paymentMethod": "",
+        "status": "",
+        "date": "",
+        "pickupDeadline": null
+      },
+      "1": {
+        "0": {
+          "orderId": "ORD001",
+          "userId": "0001",
+          "items": [],
+          "totalAmount": 0,
+          "paymentMethod": "",
+          "status": "",
+          "date": "",
+          "pickupDeadline": null
         },
-        {
-            "id": "0004",
-            "name": "George Harris",
-            "email": "ghfdbs@gmail.com",
-            "password": "7894",
-            "role": "user"
+        "1": {
+          "orderId": "ORD1740668993430",
+          "userId": "0007",
+          "items": [
+            "3"
+          ],
+          "totalAmount": 80,
+          "paymentMethod": "store",
+          "status": "pending",
+          "date": "2025-02-27T15:09:53.430Z",
+          "pickupDeadline": "2025-02-28T14:30:00.000Z"
         },
-        {
-            "id": "0005",
-            "name": "Arthur Brown",
-            "email": "arfhwrthb@gmail.com",
-            "password": "12345",
-            "role": "user"
+        "id": "8630"
+      },
+      "2": {
+        "0": {
+          "orderId": "ORD001",
+          "userId": "0001",
+          "items": [],
+          "totalAmount": 0,
+          "paymentMethod": "",
+          "status": "",
+          "date": "",
+          "pickupDeadline": null
         },
-        {
-            "id": "0007",
-            "name": "GPK Manager",
-            "email": "gpk@gmail.com",
-            "password": "8080",
-            "role": "admin"
+        "1": {
+          "0": {
+            "orderId": "ORD001",
+            "userId": "0001",
+            "items": [],
+            "totalAmount": 0,
+            "paymentMethod": "",
+            "status": "",
+            "date": "",
+            "pickupDeadline": null
+          },
+          "1": {
+            "orderId": "ORD1740668993430",
+            "userId": "0007",
+            "items": [
+              "3"
+            ],
+            "totalAmount": 80,
+            "paymentMethod": "store",
+            "status": "pending",
+            "date": "2025-02-27T15:09:53.430Z",
+            "pickupDeadline": "2025-02-28T14:30:00.000Z"
+          },
+          "id": "8630"
         },
-        {
-            "id": "0008",
-            "name": "System Admin",
-            "email": "example@gmail.com",
-            "password": "8080",
-            "role": "admin"
-        }
-    ]
+        "2": {
+          "orderId": "ORD1740669455181",
+          "userId": "0007",
+          "items": [
+            "3"
+          ],
+          "totalAmount": 80,
+          "paymentMethod": "store",
+          "status": "pending",
+          "date": "2025-02-27T15:17:35.181Z",
+          "pickupDeadline": "2025-02-28T14:30:00.000Z"
+        },
+        "id": "3099"
+      },
+      "3": {
+        "orderId": "ORD1740669577677",
+        "userId": "0007",
+        "items": [
+          "3"
+        ],
+        "totalAmount": 80,
+        "paymentMethod": "store",
+        "status": "pending",
+        "date": "2025-02-27T15:19:37.677Z",
+        "pickupDeadline": "2025-02-28T14:30:00.000Z"
+      },
+      "id": "bb7c"
+    }
+  ]
 }

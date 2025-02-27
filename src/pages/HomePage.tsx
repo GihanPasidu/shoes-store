@@ -19,6 +19,53 @@ const HomePage: React.FC = () => {
   const navigate = useNavigate();
   const { addToCart, cart } = useCart();
 
+  const checkExpiredHolds = async () => {
+    try {
+      const ordersResponse = await axios.get('http://localhost:5001/orders');
+      const orders = ordersResponse.data;
+      const now = new Date();
+
+      const expiredOrders = orders.filter((order: any) => 
+        order.status === 'pending' && 
+        order.pickupDeadline && 
+        new Date(order.pickupDeadline) < now
+      );
+
+      if (expiredOrders.length > 0) {
+        // Get current shoes data
+        const shoesResponse = await axios.get('http://localhost:5000/shoes');
+        const shoes = shoesResponse.data;
+
+        // Restore quantities from expired orders
+        expiredOrders.forEach((order: any) => {
+          const quantities = order.items.reduce((acc: {[key: string]: number}, id: string) => {
+            acc[id] = (acc[id] || 0) + 1;
+            return acc;
+          }, {});
+
+          shoes.forEach((shoe: any) => {
+            if (quantities[shoe.id]) {
+              shoe.quantity += quantities[shoe.id];
+            }
+          });
+        });
+
+        // Update shoes with restored quantities
+        await axios.put('http://localhost:5000/shoes', shoes);
+
+        // Remove expired orders from user.json
+        const updatedOrders = orders.filter((order: any) => 
+          !expiredOrders.find((eo: any) => eo.orderId === order.orderId)
+        );
+
+        // Save updated orders list (without expired orders)
+        await axios.post('http://localhost:5001/orders', updatedOrders);
+      }
+    } catch (err) {
+      console.error('Error checking expired holds:', err);
+    }
+  };
+
   useEffect(() => {
     axios.get('http://localhost:5000/shoes')
       .then(response => {
@@ -35,6 +82,15 @@ const HomePage: React.FC = () => {
     );
     setFilteredShoes(filtered);
   }, [searchQuery, shoes]);
+
+  useEffect(() => {
+    // Check for expired holds when component mounts
+    checkExpiredHolds();
+    
+    // Set up interval to check periodically
+    const interval = setInterval(checkExpiredHolds, 60000); // Check every minute
+    return () => clearInterval(interval);
+  }, []);
 
   const handleViewDetails = (id: number) => {
     navigate(`/product/${id}`);
