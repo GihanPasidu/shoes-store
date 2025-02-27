@@ -9,32 +9,57 @@ interface Shoe {
   name: string;
   price: string;
   image: string;
+  quantity: number;
+}
+
+interface CartItem extends Shoe {
+  cartQuantity: number;
 }
 
 const CartPage: React.FC = () => {
   const { cart, removeFromCart } = useCart();
-  const [cartItems, setCartItems] = useState<Shoe[]>([]);
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
   const [totalPrice, setTotalPrice] = useState<number>(0);
+  const [itemQuantities, setItemQuantities] = useState<{[key: string]: number}>({});
 
   useEffect(() => {
     if (cart.length > 0) {
       axios.get('http://localhost:5000/shoes')
         .then(response => {
           const shoes = response.data;
-          const items = shoes.filter((shoe: Shoe) => cart.includes(shoe.id.toString()));
+          // Count quantities of each item in cart
+          const quantities = cart.reduce((acc: {[key: string]: number}, id: string) => {
+            acc[id] = (acc[id] || 0) + 1;
+            return acc;
+          }, {});
+          setItemQuantities(quantities);
+
+          // Create cart items with quantities
+          const items = shoes
+            .filter((shoe: Shoe) => cart.includes(shoe.id.toString()))
+            .map((shoe: Shoe) => ({
+              ...shoe,
+              cartQuantity: quantities[shoe.id.toString()] || 0
+            }));
           setCartItems(items);
         })
         .catch(err => console.error('Error fetching cart items:', err));
+    } else {
+      setCartItems([]);
+      setItemQuantities({});
     }
   }, [cart]);
 
   useEffect(() => {
     const total = cartItems
       .filter(item => selectedItems.includes(item.id.toString()))
-      .reduce((sum, item) => sum + parseFloat(item.price.replace('$', '')), 0);
+      .reduce((sum, item) => {
+        const price = parseFloat(item.price.replace('$', ''));
+        return sum + (price * (itemQuantities[item.id.toString()] || 0));
+      }, 0);
     setTotalPrice(total);
-  }, [selectedItems, cartItems]);
+  }, [selectedItems, cartItems, itemQuantities]);
 
   const handleSelectChange = (id: string) => {
     setSelectedItems(prevSelectedItems =>
@@ -89,7 +114,14 @@ const CartPage: React.FC = () => {
                     <img src={item.image} alt={item.name} className="cart-item-image" />
                     <div className="cart-item-details">
                       <h3>{item.name}</h3>
-                      <p>{item.price}</p>
+                      <p className="item-price">{item.price}</p>
+                      <p className="quantity-text">
+                        Quantity in Cart: {itemQuantities[item.id.toString()] || 0}
+                      </p>
+                      <p className="item-total">
+                        Item Total: ${((parseFloat(item.price.replace('$', ''))) * 
+                          (itemQuantities[item.id.toString()] || 0)).toFixed(2)}
+                      </p>
                     </div>
                   </div>
                 ))}
@@ -106,6 +138,10 @@ const CartPage: React.FC = () => {
           <div className="checkout-section">
             <h2>Order Summary</h2>
             <p>Selected Items: {selectedItems.length}</p>
+            <p>Total Items: {Object.values(itemQuantities)
+              .filter((_, index) => selectedItems.includes(cartItems[index]?.id.toString()))
+              .reduce((a, b) => a + b, 0)}
+            </p>
             <h3>Total: ${totalPrice.toFixed(2)}</h3>
             <button 
               className="checkout-button" 

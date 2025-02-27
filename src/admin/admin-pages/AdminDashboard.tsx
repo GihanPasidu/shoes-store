@@ -10,6 +10,7 @@ interface Product {
   price: string;
   description: string;
   image: string;
+  quantity: number;
 }
 
 interface User {
@@ -236,6 +237,7 @@ const AdminDashboard: React.FC = () => {
                         <div className="product-info">
                           <h3>{product.name}</h3>
                           <p>{product.price}</p>
+                          <p>Stock: {product.quantity}</p>
                           <div className="product-actions">
                             <Link to={`/admin/edit/${product.id}`}>Edit</Link>
                             <button onClick={() => handleDeleteClick(product.id, 'product')}>Delete</button>

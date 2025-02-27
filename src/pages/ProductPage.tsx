@@ -10,11 +10,13 @@ interface Shoe {
   price: string;
   description: string;
   image: string;
+  quantity: number;
 }
 
 const ProductPage: React.FC = () => {
   const { id } = useParams();
   const [shoe, setShoe] = useState<Shoe | null>(null);
+  const [selectedQuantity, setSelectedQuantity] = useState(1);
   const { addToCart } = useCart();
 
   useEffect(() => {
@@ -27,6 +29,10 @@ const ProductPage: React.FC = () => {
         .catch(err => console.error('Error fetching shoe details:', err));
     }
   }, [id]);
+
+  const handleQuantityChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedQuantity(parseInt(e.target.value));
+  };
 
   if (!shoe) return <div>Loading...</div>;
 
@@ -52,11 +58,32 @@ const ProductPage: React.FC = () => {
           <h1>{shoe.name}</h1>
           <p>{shoe.description}</p>
           <p className="price">{shoe.price}</p>
+          <p className="quantity">Available Quantity: {shoe.quantity}</p>
+          <div className="quantity-selector">
+            <label htmlFor="quantity">Quantity: </label>
+            <select 
+              id="quantity"
+              value={selectedQuantity}
+              onChange={handleQuantityChange}
+              disabled={shoe.quantity === 0}
+            >
+              {Array.from({length: shoe.quantity}, (_, i) => i + 1).map(num => (
+                <option key={num} value={num}>
+                  {num}
+                </option>
+              ))}
+            </select>
+          </div>
           <button 
             className="add-to-cart-btn"
-            onClick={() => addToCart(shoe.id.toString())}
+            onClick={() => {
+              for(let i = 0; i < selectedQuantity; i++) {
+                addToCart(shoe.id.toString());
+              }
+            }}
+            disabled={shoe.quantity === 0}
           >
-            Add to Cart
+            {shoe.quantity > 0 ? `Add ${selectedQuantity} to Cart` : 'Out of Stock'}
           </button>
         </div>
       </div>

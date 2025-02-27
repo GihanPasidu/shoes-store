@@ -9,6 +9,7 @@ interface Shoe {
   name: string;
   price: string;
   image: string;
+  quantity: number;
 }
 
 const HomePage: React.FC = () => {
@@ -76,10 +77,14 @@ const HomePage: React.FC = () => {
                 <div className="shoe-item-details">
                   <h3>{shoe.name}</h3>
                   <p>{shoe.price}</p>
+                  <p className="quantity-text">Available: {shoe.quantity}</p>
                 </div>
               </Link>
-              <button onClick={() => addToCart(shoe.id.toString())}>
-                Add to Cart
+              <button 
+                onClick={() => addToCart(shoe.id.toString())}
+                disabled={shoe.quantity === 0}
+              >
+                {shoe.quantity > 0 ? 'Add to Cart' : 'Out of Stock'}
               </button>
             </div>
           </div>

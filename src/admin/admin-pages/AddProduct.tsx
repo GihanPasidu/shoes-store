@@ -13,6 +13,7 @@ const AddProduct: React.FC = () => {
   const [price, setPrice] = useState('');
   const [description, setDescription] = useState('');
   const [image, setImage] = useState('');
+  const [quantity, setQuantity] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -22,7 +23,8 @@ const AddProduct: React.FC = () => {
         name,
         price: `$${price}`,
         description,
-        image
+        image,
+        quantity: Number(quantity)
       });
       navigate('/admin');
     } catch (error) {
@@ -85,6 +87,14 @@ const AddProduct: React.FC = () => {
               placeholder="Image URL"
               value={image}
               onChange={(e) => setImage(e.target.value)}
+              required
+            />
+            <input
+              type="number"
+              placeholder="Quantity"
+              value={quantity}
+              onChange={(e) => setQuantity(e.target.value)}
+              min="0"
               required
             />
             <button type="submit">Add Product</button>

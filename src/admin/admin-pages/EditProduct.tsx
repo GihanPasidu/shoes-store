@@ -11,6 +11,7 @@ const EditProduct: React.FC = () => {
   const [price, setPrice] = useState('');
   const [description, setDescription] = useState('');
   const [image, setImage] = useState('');
+  const [quantity, setQuantity] = useState(0);
 
   useEffect(() => {
     checkAuth();
@@ -25,6 +26,7 @@ const EditProduct: React.FC = () => {
         setPrice(product.price.replace('$', ''));
         setDescription(product.description);
         setImage(product.image);
+        setQuantity(product.quantity);
       } catch (error) {
         console.error('Error fetching product:', error);
       }
@@ -39,7 +41,8 @@ const EditProduct: React.FC = () => {
         name,
         price: `$${price}`,
         description,
-        image
+        image,
+        quantity
       });
       navigate('/admin');
     } catch (error) {
@@ -119,6 +122,19 @@ const EditProduct: React.FC = () => {
                   type="url"
                   value={image}
                   onChange={(e) => setImage(e.target.value)}
+                  required
+                />
+              </div>
+            </div>
+
+            <div className="input-group">
+              <div className="input-box">
+                <label>New Quantity <span className="current-value">Current: {quantity}</span></label>
+                <input
+                  type="number"
+                  value={quantity}
+                  onChange={(e) => setQuantity(Number(e.target.value))}
+                  min="0"
                   required
                 />
               </div>

@@ -130,6 +130,43 @@
     transform: translateY(-2px);
 }
 
+.add-to-cart-btn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.quantity {
+    color: #666;
+    font-size: 1.1rem;
+    margin: 10px 0;
+}
+
+.quantity-selector {
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.quantity-selector label {
+    color: #333;
+    font-size: 1.1rem;
+}
+
+.quantity-selector select {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    min-width: 60px;
+}
+
+.quantity-selector select:disabled {
+    background-color: #f5f5f5;
+    cursor: not-allowed;
+}
+
 .footer {
     background-color: #1a237e;
     color: #fff;

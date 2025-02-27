@@ -166,6 +166,12 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.shoe-item button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
 .shoe-item-content {
     position: relative;
     z-index: 2;
@@ -199,5 +205,11 @@
 
 .shoe-item-content h3,
 .shoe-item-content p {
+    margin: 5px 0;
+}
+
+.quantity-text {
+    color: #666;
+    font-size: 0.9rem;
     margin: 5px 0;
 }
