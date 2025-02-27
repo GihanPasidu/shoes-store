@@ -950,3 +950,23 @@
 .orders-table .status-processing { background-color: #cfe2ff; }
 .orders-table .status-completed { background-color: #d1e7dd; }
 .orders-table .status-cancelled { background-color: #f8d7da; }
+
+.orders-table .delete-button {
+    padding: 0.5rem 1rem;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.orders-table .delete-button:hover {
+    opacity: 0.9;
+}
+
+.status-pending { background-color: #fff3cd; }
+.status-paid { background-color: #198754; color: white; }
+.status-hold { background-color: #ffc107; }
+.status-cancelled { background-color: #f8d7da; }
+

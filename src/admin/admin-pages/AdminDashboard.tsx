@@ -342,8 +342,8 @@ const AdminDashboard: React.FC = () => {
                   />
                 </div>
               </div>
-              <div className="orders-table-container">
-                <table className="orders-table">
+              <div className="users-table-container">
+                <table className="users-table">
                   <thead>
                     <tr>
                       <th>Order ID</th>
@@ -372,18 +372,21 @@ const AdminDashboard: React.FC = () => {
                               className={`status-${order.status.toLowerCase()}`}
                             >
                               <option value="pending">Pending</option>
-                              <option value="processing">Processing</option>
-                              <option value="completed">Completed</option>
+                              <option value="paid">Paid</option>
+                              <option value="hold">Hold</option>
                               <option value="cancelled">Cancelled</option>
                             </select>
                           </td>
                           <td>
-                            <button onClick={() => {
-                              setItemToDelete({ id: order.orderId, type: 'order' });
-                              setShowConfirmDialog(true);
-                            }}>
-                              Delete
-                            </button>
+                            <div className="user-actions">
+                              <button className="view-button">Details</button>
+                              <button 
+                                className="delete-button"
+                                onClick={() => handleDeleteClick(order.orderId, 'order')}
+                              >
+                                Delete
+                              </button>
+                            </div>
                           </td>
                         </tr>
                     ))}
