@@ -891,3 +891,24 @@
     background-color: #6c757d;
     color: white;
 }
+
+.orders-section,
+.orders-table-container,
+.orders-table,
+.order-actions {
+    display: none;
+}
+
+.confirm-dialog {
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.confirm-dialog p {
+    margin: 0.5rem 0;
+    line-height: 1.5;
+}
+
+.confirm-dialog strong {
+    color: #1a237e;
+}

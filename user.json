@@ -8,13 +8,6 @@
       "role": "user"
     },
     {
-      "id": "0002",
-      "name": "Sarah Edwards",
-      "email": "sedgbers@gmail.com",
-      "password": "123456",
-      "role": "user"
-    },
-    {
       "id": "0003",
       "name": "John Smith",
       "email": "example@gmail.com",
@@ -52,264 +45,95 @@
   ],
   "orders": [
     {
-      "orderId": "ORD001",
-      "userId": "0001",
-      "items": [],
-      "totalAmount": 0,
-      "paymentMethod": "",
-      "status": "",
-      "date": "",
-      "pickupDeadline": null
+      "orderId": "ORD1740668993430",
+      "id": "0007",
+      "items": [
+        "3"
+      ],
+      "totalAmount": 80,
+      "paymentMethod": "store",
+      "status": "pending",
+      "date": "2025-02-27T15:09:53.430Z",
+      "pickupDeadline": "2025-02-28T14:30:00.000Z",
+      "id": "a691"
     },
     {
-      "0": {
-        "orderId": "ORD001",
-        "userId": "0001",
-        "items": [],
-        "totalAmount": 0,
-        "paymentMethod": "",
-        "status": "",
-        "date": "",
-        "pickupDeadline": null
-      },
-      "1": {
-        "orderId": "ORD1740668993430",
-        "userId": "0007",
-        "items": [
-          "3"
-        ],
-        "totalAmount": 80,
-        "paymentMethod": "store",
-        "status": "pending",
-        "date": "2025-02-27T15:09:53.430Z",
-        "pickupDeadline": "2025-02-28T14:30:00.000Z"
-      },
-      "id": "8630"
+      "orderId": "ORD1740669455181",
+      "id": "0007",
+      "items": [
+        "3"
+      ],
+      "totalAmount": 80,
+      "paymentMethod": "store",
+      "status": "pending",
+      "date": "2025-02-27T15:17:35.181Z",
+      "pickupDeadline": "2025-02-28T14:30:00.000Z",
+      "id": "b9fb"
     },
     {
-      "0": {
-        "orderId": "ORD001",
-        "userId": "0001",
-        "items": [],
-        "totalAmount": 0,
-        "paymentMethod": "",
-        "status": "",
-        "date": "",
-        "pickupDeadline": null
-      },
-      "1": {
-        "0": {
-          "orderId": "ORD001",
-          "userId": "0001",
-          "items": [],
-          "totalAmount": 0,
-          "paymentMethod": "",
-          "status": "",
-          "date": "",
-          "pickupDeadline": null
-        },
-        "1": {
-          "orderId": "ORD1740668993430",
-          "userId": "0007",
-          "items": [
-            "3"
-          ],
-          "totalAmount": 80,
-          "paymentMethod": "store",
-          "status": "pending",
-          "date": "2025-02-27T15:09:53.430Z",
-          "pickupDeadline": "2025-02-28T14:30:00.000Z"
-        },
-        "id": "8630"
-      },
-      "2": {
-        "orderId": "ORD1740669455181",
-        "userId": "0007",
-        "items": [
-          "3"
-        ],
-        "totalAmount": 80,
-        "paymentMethod": "store",
-        "status": "pending",
-        "date": "2025-02-27T15:17:35.181Z",
-        "pickupDeadline": "2025-02-28T14:30:00.000Z"
-      },
-      "id": "3099"
+      "orderId": "ORD1740669577677",
+      "id": "0007",
+      "items": [
+        "3"
+      ],
+      "totalAmount": 80,
+      "paymentMethod": "store",
+      "status": "pending",
+      "date": "2025-02-27T15:19:37.677Z",
+      "pickupDeadline": "2025-02-28T14:30:00.000Z",
+      "id": "ad00"
     },
     {
-      "0": {
-        "orderId": "ORD001",
-        "userId": "0001",
-        "items": [],
-        "totalAmount": 0,
-        "paymentMethod": "",
-        "status": "",
-        "date": "",
-        "pickupDeadline": null
-      },
-      "1": {
-        "0": {
-          "orderId": "ORD001",
-          "userId": "0001",
-          "items": [],
-          "totalAmount": 0,
-          "paymentMethod": "",
-          "status": "",
-          "date": "",
-          "pickupDeadline": null
-        },
-        "1": {
-          "orderId": "ORD1740668993430",
-          "userId": "0007",
-          "items": [
-            "3"
-          ],
-          "totalAmount": 80,
-          "paymentMethod": "store",
-          "status": "pending",
-          "date": "2025-02-27T15:09:53.430Z",
-          "pickupDeadline": "2025-02-28T14:30:00.000Z"
-        },
-        "id": "8630"
-      },
-      "2": {
-        "0": {
-          "orderId": "ORD001",
-          "userId": "0001",
-          "items": [],
-          "totalAmount": 0,
-          "paymentMethod": "",
-          "status": "",
-          "date": "",
-          "pickupDeadline": null
-        },
-        "1": {
-          "0": {
-            "orderId": "ORD001",
-            "userId": "0001",
-            "items": [],
-            "totalAmount": 0,
-            "paymentMethod": "",
-            "status": "",
-            "date": "",
-            "pickupDeadline": null
-          },
-          "1": {
-            "orderId": "ORD1740668993430",
-            "userId": "0007",
-            "items": [
-              "3"
-            ],
-            "totalAmount": 80,
-            "paymentMethod": "store",
-            "status": "pending",
-            "date": "2025-02-27T15:09:53.430Z",
-            "pickupDeadline": "2025-02-28T14:30:00.000Z"
-          },
-          "id": "8630"
-        },
-        "2": {
-          "orderId": "ORD1740669455181",
-          "userId": "0007",
-          "items": [
-            "3"
-          ],
-          "totalAmount": 80,
-          "paymentMethod": "store",
-          "status": "pending",
-          "date": "2025-02-27T15:17:35.181Z",
-          "pickupDeadline": "2025-02-28T14:30:00.000Z"
-        },
-        "id": "3099"
-      },
-      "3": {
-        "orderId": "ORD1740669577677",
-        "userId": "0007",
-        "items": [
-          "3"
-        ],
-        "totalAmount": 80,
-        "paymentMethod": "store",
-        "status": "pending",
-        "date": "2025-02-27T15:19:37.677Z",
-        "pickupDeadline": "2025-02-28T14:30:00.000Z"
-      },
-      "id": "bb7c"
+      "orderId": "ORD1740670308375",
+      "id": "0007",
+      "items": [
+        "3"
+      ],
+      "totalAmount": 80,
+      "paymentMethod": "store",
+      "status": "pending",
+      "date": "2025-02-27T15:31:48.375Z",
+      "pickupDeadline": "2025-02-28T14:30:00.000Z",
+      "id": "8a2c"
     },
     {
-      "0": {
-        "orderId": "ORD001",
-        "userId": "0001",
-        "items": [],
-        "totalAmount": 0,
-        "paymentMethod": "",
-        "status": "",
-        "date": "",
-        "pickupDeadline": null
-      },
-      "1": {
-        "orderId": "ORD1740670308375",
-        "userId": "0007",
-        "items": [
-          "3"
-        ],
-        "totalAmount": 80,
-        "paymentMethod": "store",
-        "status": "pending",
-        "date": "2025-02-27T15:31:48.375Z",
-        "pickupDeadline": "2025-02-28T14:30:00.000Z"
-      },
-      "id": "a7af"
+      "orderId": "ORD1740670444504",
+      "id": "0007",
+      "items": [
+        "3"
+      ],
+      "totalAmount": 80,
+      "paymentMethod": "store",
+      "status": "pending",
+      "date": "2025-02-27T15:34:04.504Z",
+      "pickupDeadline": "2025-02-28T14:30:00.000Z",
+      "id": "6ec5"
     },
     {
-      "0": {
-        "orderId": "ORD001",
-        "userId": "0001",
-        "items": [],
-        "totalAmount": 0,
-        "paymentMethod": "",
-        "status": "",
-        "date": "",
-        "pickupDeadline": null
-      },
-      "1": {
-        "orderId": "ORD1740670444504",
-        "userId": "0007",
-        "items": [
-          "3"
-        ],
-        "totalAmount": 80,
-        "paymentMethod": "store",
-        "status": "pending",
-        "date": "2025-02-27T15:34:04.504Z",
-        "pickupDeadline": "2025-02-28T14:30:00.000Z"
-      },
-      "id": "210c"
+      "orderId": "ORD1740670602997",
+      "id": "0007",
+      "items": [
+        "3"
+      ],
+      "totalAmount": 80,
+      "paymentMethod": "store",
+      "status": "pending",
+      "date": "2025-02-27T15:36:42.997Z",
+      "pickupDeadline": "2025-02-28T14:30:00.000Z",
+      "id": "5169"
     },
     {
-      "0": {
-        "orderId": "ORD001",
-        "userId": "0001",
-        "items": [],
-        "totalAmount": 0,
-        "paymentMethod": "",
-        "status": "",
-        "date": "",
-        "pickupDeadline": null
-      },
-      "1": {
-        "orderId": "ORD1740670602997",
-        "userId": "0007",
-        "items": [
-          "3"
-        ],
-        "totalAmount": 80,
-        "paymentMethod": "store",
-        "status": "pending",
-        "date": "2025-02-27T15:36:42.997Z",
-        "pickupDeadline": "2025-02-28T14:30:00.000Z"
-      },
-      "id": "6a62"
+      "orderId": "ORD1740670868991",
+      "id": "0007",
+      "items": [
+        "7"
+      ],
+      "totalAmount": 60,
+      "paymentMethod": "store",
+      "status": "pending",
+      "date": "2025-02-27T15:41:08.991Z",
+      "pickupDeadline": "2025-02-28T14:30:00.000Z",
+      "id": "367b"
     }
   ]
 }

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
-import { checkAuth } from '../../utils/authUtils';
 import '../admin-styles/EditProduct.css';
 
 const EditProduct: React.FC = () => {
@@ -14,7 +13,18 @@ const EditProduct: React.FC = () => {
   const [quantity, setQuantity] = useState(0);
 
   useEffect(() => {
-    checkAuth();
+    const token = localStorage.getItem('token');
+    const role = localStorage.getItem('role');
+    
+    if (!token) {
+      window.location.href = '/login';
+      return;
+    }
+
+    if (role !== 'admin') {
+      window.location.href = '/home';
+      return;
+    }
   }, []);
 
   useEffect(() => {

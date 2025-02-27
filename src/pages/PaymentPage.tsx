@@ -58,7 +58,7 @@ const PaymentPage: React.FC = () => {
 
           const newOrder = {
             orderId: `ORD${Date.now()}`,
-            userId: user.id,
+            id: user.id,
             items: cart,
             totalAmount: amount,
             paymentMethod: 'card',

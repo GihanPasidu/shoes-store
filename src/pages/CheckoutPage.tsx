@@ -71,7 +71,7 @@ const CheckoutPage: React.FC = () => {
 
             const newOrder = {
               orderId: `ORD${Date.now()}`,
-              userId: user.id,
+              id: user.id,
               items: cart,
               totalAmount: totalAmount,
               paymentMethod: 'store',

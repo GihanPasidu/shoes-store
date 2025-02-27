@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import '../admin-styles/AdminDashboard.css';
-import { checkAuth } from '../../utils/authUtils';
 
 interface Product {
   id: number;
@@ -34,7 +33,18 @@ const AdminDashboard: React.FC = () => {
   const itemsPerPage = 8;
 
   useEffect(() => {
-    const isAuthenticated = checkAuth();
+    const token = localStorage.getItem('token');
+    const role = localStorage.getItem('role');
+    
+    if (!token) {
+      window.location.href = '/login';
+      return;
+    }
+
+    if (role !== 'admin') {
+      window.location.href = '/home';
+      return;
+    }
   }, []);
 
   useEffect(() => {
@@ -219,7 +229,7 @@ const AdminDashboard: React.FC = () => {
                 </>
               )}
             </div>
-          ) : (
+          ) : activeTab === 'users' ? (
             <div className="users-section">
               <div className="section-header">
                 <h2>Users Management</h2>
@@ -273,7 +283,7 @@ const AdminDashboard: React.FC = () => {
                 </table>
               </div>
             </div>
-          )}
+          ) : null}
         </main>
       </div>
       {showConfirmDialog && (
