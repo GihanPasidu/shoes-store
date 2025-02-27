@@ -167,6 +167,24 @@
     cursor: not-allowed;
 }
 
+
+/* Alert styles */
+
+.custom-alert {
+    display: none;
+}
+
+@keyframes slideDown {
+    from {
+        top: -100px;
+        opacity: 0;
+    }
+    to {
+        top: 20px;
+        opacity: 1;
+    }
+}
+
 .footer {
     background-color: #1a237e;
     color: #fff;

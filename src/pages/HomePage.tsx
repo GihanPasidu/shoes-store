@@ -17,7 +17,7 @@ const HomePage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredShoes, setFilteredShoes] = useState<Shoe[]>([]);
   const navigate = useNavigate();
-  const { addToCart } = useCart();
+  const { addToCart, cart } = useCart();
 
   useEffect(() => {
     axios.get('http://localhost:5000/shoes')
@@ -81,7 +81,13 @@ const HomePage: React.FC = () => {
                 </div>
               </Link>
               <button 
-                onClick={() => addToCart(shoe.id.toString())}
+                onClick={() => {
+                  const currentCartCount = cart.filter(id => id === shoe.id.toString()).length;
+                  if (currentCartCount >= shoe.quantity) {
+                    return;
+                  }
+                  addToCart(shoe.id.toString());
+                }}
                 disabled={shoe.quantity === 0}
               >
                 {shoe.quantity > 0 ? 'Add to Cart' : 'Out of Stock'}

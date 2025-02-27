@@ -17,7 +17,7 @@ const ProductPage: React.FC = () => {
   const { id } = useParams();
   const [shoe, setShoe] = useState<Shoe | null>(null);
   const [selectedQuantity, setSelectedQuantity] = useState(1);
-  const { addToCart } = useCart();
+  const { addToCart, cart } = useCart();
 
   useEffect(() => {
     if (id) {
@@ -77,6 +77,12 @@ const ProductPage: React.FC = () => {
           <button 
             className="add-to-cart-btn"
             onClick={() => {
+              const currentCartCount = cart.filter(itemId => itemId === shoe.id.toString()).length;
+              const remainingStock = shoe.quantity - currentCartCount;
+
+              if (selectedQuantity > remainingStock || currentCartCount >= shoe.quantity) {
+                return;
+              }
               for(let i = 0; i < selectedQuantity; i++) {
                 addToCart(shoe.id.toString());
               }

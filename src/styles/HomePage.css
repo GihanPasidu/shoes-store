@@ -213,3 +213,10 @@
     font-size: 0.9rem;
     margin: 5px 0;
 }
+
+
+/* Remove the alert styles */
+
+.custom-alert {
+    display: none;
+}
