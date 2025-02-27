@@ -1,39 +1,51 @@
 {
-  "users": [
-    {
-      "id": "1e9d",
-      "email": "example@gmail.com",
-      "password": "1234"
-    },
-    {
-      "id": "1345",
-      "email": "sedgbers@gmail.com",
-      "password": "123456"
-    },
-    {
-      "id": "f4be",
-      "email": "example@gmail.com",
-      "password": "1234"
-    },
-    {
-      "id": "a4f1",
-      "email": "ghfdbs@gmail.com",
-      "password": "7894"
-    },
-    {
-      "id": "37de",
-      "email": "arfhwrthb@gmail.com",
-      "password": "12345"
-    },
-    {
-      "id": "admin1",
-      "email": "gpk@gmail.com",
-      "password": "8080"
-    },
-    {
-      "id": "9d4f",
-      "email": "gpk@gmail.com",
-      "password": "8080"
-    }
-  ]
+    "users": [{
+            "id": "0001",
+            "email": "example@gmail.com",
+            "password": "1234",
+            "role": "user"
+        },
+        {
+            "id": "0002",
+            "email": "sedgbers@gmail.com",
+            "password": "123456",
+            "role": "user"
+        },
+        {
+            "id": "0003",
+            "email": "example@gmail.com",
+            "password": "1234",
+            "role": "user"
+        },
+        {
+            "id": "0004",
+            "email": "ghfdbs@gmail.com",
+            "password": "7894",
+            "role": "user"
+        },
+        {
+            "id": "0005",
+            "email": "arfhwrthb@gmail.com",
+            "password": "12345",
+            "role": "user"
+        },
+        {
+            "id": "0006",
+            "email": "gpk@gmail.com",
+            "password": "8080",
+            "role": "admin"
+        },
+        {
+            "id": "0007",
+            "email": "gpk@gmail.com",
+            "password": "8080",
+            "role": "admin"
+        },
+        {
+            "id": "0008",
+            "email": "example@gmail.com",
+            "password": "8080",
+            "role": "admin"
+        }
+    ]
 }

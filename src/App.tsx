@@ -16,7 +16,8 @@ const PrivateRoute = ({ children }: { children: React.ReactElement }) => {
 
 const AdminRoute = ({ children }: { children: React.ReactElement }) => {
   const token = localStorage.getItem('token');
-  const isAdmin = true; // Replace with actual admin check logic
+  const role = localStorage.getItem('role');
+  const isAdmin = role === 'admin'; // Check if the user is an admin
   return token && isAdmin ? children : <Navigate to="/login" />;
 };
 

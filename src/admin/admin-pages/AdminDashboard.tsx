@@ -16,6 +16,7 @@ interface Product {
 interface User {
   id: string;
   email: string;
+  role: string;
 }
 
 const AdminDashboard: React.FC = () => {
@@ -30,20 +31,10 @@ const AdminDashboard: React.FC = () => {
   const [showConfirmDialog, setShowConfirmDialog] = useState(false);
   const [itemToDelete, setItemToDelete] = useState<{ id: number | string, type: 'product' | 'user' } | null>(null);
   const [showLogoutDialog, setShowLogoutDialog] = useState(false);
-  const [showLoginConfirm, setShowLoginConfirm] = useState(true);
-  const [showLoginPopup, setShowLoginPopup] = useState(true);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const itemsPerPage = 8;
 
   useEffect(() => {
     const isAuthenticated = checkAuth();
-    if (isAuthenticated) {
-      setShowLoginConfirm(true);
-      setTimeout(() => {
-        setShowLoginConfirm(false);
-      }, 2000); // Hide after 2 seconds
-    }
   }, []);
 
   useEffect(() => {
@@ -76,6 +67,7 @@ const AdminDashboard: React.FC = () => {
   const fetchUsers = async () => {
     try {
       const response = await axios.get('http://localhost:5001/users');
+      // Show all users instead of filtering
       setUsers(response.data);
     } catch (error) {
       console.error('Error fetching users:', error);
@@ -104,29 +96,6 @@ const AdminDashboard: React.FC = () => {
     
     setShowConfirmDialog(false);
     setItemToDelete(null);
-  };
-
-  const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      const response = await axios.get('http://localhost:5001/users');
-      const users = response.data;
-      const user = users.find((u: any) => u.email === email && u.password === password);
-      
-      if (user) {
-        localStorage.setItem('token', 'dummy-token');
-        setShowLoginPopup(false);
-        setShowLoginConfirm(true);
-        setTimeout(() => {
-          setShowLoginConfirm(false);
-        }, 2000);
-      } else {
-        alert('Invalid credentials');
-      }
-    } catch (error) {
-      console.error('Login error:', error);
-      alert('Login failed');
-    }
   };
 
   const getInitials = (email: string) => {
@@ -270,6 +239,7 @@ const AdminDashboard: React.FC = () => {
                       <th>User</th>
                       <th>ID</th>
                       <th>Email</th>
+                      <th>Role</th>
                       <th>Actions</th>
                     </tr>
                   </thead>
@@ -285,6 +255,7 @@ const AdminDashboard: React.FC = () => {
                         </td>
                         <td>{user.id}</td>
                         <td>{user.email}</td>
+                        <td>{user.role}</td>
                         <td>
                           <div className="user-actions">
                             <button className="view-button">View Details</button>
@@ -331,50 +302,6 @@ const AdminDashboard: React.FC = () => {
               </button>
             </div>
           </div>
-        </div>
-      )}
-      {showLoginConfirm && (
-        <div className="login-confirm-overlay">
-          <div className="login-confirm-dialog">
-            <div className="success-icon">✓</div>
-            <h3>Login Successful</h3>
-            <p>Welcome to Admin Dashboard</p>
-          </div>
-        </div>
-      )}
-      {showLoginPopup && (
-        <div className="login-popup-overlay">
-          <form className="login-popup" onSubmit={handleLogin}>
-            <h3>Admin Login</h3>
-            <div className="input-group">
-              <input
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-            </div>
-            <div className="input-group">
-              <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-            </div>
-            <div className="buttons">
-              <button type="submit" className="login-button">Login</button>
-              <button 
-                type="button" 
-                className="cancel-button"
-                onClick={() => window.location.href = '/'}
-              >
-                Cancel
-              </button>
-            </div>
-          </form>
         </div>
       )}
       <footer className="admin-footer">

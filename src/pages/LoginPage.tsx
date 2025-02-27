@@ -13,14 +13,26 @@ const LoginPage: React.FC = () => {
     e.preventDefault();
     setError('');
 
-    axios.post('http://localhost:5001/users', { email, password })
+    axios.get('http://localhost:5001/users')
       .then(response => {
-        localStorage.setItem('token', response.data.token);
-        navigate('/home');
+        const users = response.data;
+        const user = users.find((u: any) => u.email === email && u.password === password);
+        
+        if (user) {
+          localStorage.setItem('token', 'dummy-token');
+          localStorage.setItem('role', user.role);
+          if (user.role === 'admin') {
+            navigate('/admin');
+          } else {
+            navigate('/home');
+          }
+        } else {
+          setError('Invalid email or password');
+        }
       })
       .catch(err => {
         console.error('Login error:', err);
-        setError('Invalid email or password');
+        setError('Login failed');
       });
   };
 
