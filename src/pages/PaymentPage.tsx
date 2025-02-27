@@ -24,13 +24,11 @@ const PaymentPage: React.FC = () => {
       const response = await axios.get('http://localhost:5000/shoes');
       const shoes = response.data;
       
-      // Count quantities of each item
       const quantities = items.reduce((acc: {[key: string]: number}, id: string) => {
         acc[id] = (acc[id] || 0) + 1;
         return acc;
       }, {});
 
-      // Update each shoe's quantity
       const updatedShoes = shoes.map((shoe: any) => {
         if (quantities[shoe.id]) {
           return {
@@ -41,8 +39,8 @@ const PaymentPage: React.FC = () => {
         return shoe;
       });
 
-      // Save updated quantities
-      await axios.put('http://localhost:5000/shoes', updatedShoes);
+      // Update db.json with new quantities
+      await axios.patch('http://localhost:5000/shoes', { shoes: updatedShoes });
     } catch (err) {
       console.error('Error updating shoe quantities:', err);
     }

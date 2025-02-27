@@ -32,18 +32,26 @@ const CheckoutPage: React.FC = () => {
       }, {});
 
       const updatedShoes = shoes.map((shoe: any) => {
-        if (quantities[shoe.id]) {
+        if (quantities[shoe.id.toString()]) {
           return {
             ...shoe,
-            quantity: shoe.quantity - quantities[shoe.id]
+            quantity: shoe.quantity - quantities[shoe.id.toString()]
           };
         }
         return shoe;
       });
 
-      await axios.put('http://localhost:5000/shoes', updatedShoes);
+      // Update individual shoes in db.json
+      for (const shoe of updatedShoes) {
+        if (quantities[shoe.id.toString()]) {
+          await axios.patch(`http://localhost:5000/shoes/${shoe.id}`, shoe);
+        }
+      }
+
+      return true;
     } catch (err) {
       console.error('Error updating shoe quantities:', err);
+      return false;
     }
   };
 

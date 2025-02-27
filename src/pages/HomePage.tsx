@@ -34,7 +34,7 @@ const HomePage: React.FC = () => {
       if (expiredOrders.length > 0) {
         // Get current shoes data
         const shoesResponse = await axios.get('http://localhost:5000/shoes');
-        const shoes = shoesResponse.data;
+        let shoes = shoesResponse.data;
 
         // Restore quantities from expired orders
         expiredOrders.forEach((order: any) => {
@@ -43,22 +43,31 @@ const HomePage: React.FC = () => {
             return acc;
           }, {});
 
-          shoes.forEach((shoe: any) => {
-            if (quantities[shoe.id]) {
-              shoe.quantity += quantities[shoe.id];
+          shoes = shoes.map((shoe: any) => {
+            if (quantities[shoe.id.toString()]) {
+              return {
+                ...shoe,
+                quantity: shoe.quantity + quantities[shoe.id.toString()]
+              };
             }
+            return shoe;
           });
         });
 
-        // Update shoes with restored quantities
-        await axios.put('http://localhost:5000/shoes', shoes);
+        // Update individual shoes in db.json
+        for (const shoe of shoes) {
+          await axios.patch(`http://localhost:5000/shoes/${shoe.id}`, shoe);
+        }
 
-        // Remove expired orders from user.json
+        // Refresh the shoes list in the UI
+        setShoes(shoes);
+        setFilteredShoes(shoes);
+
+        // Remove expired orders
         const updatedOrders = orders.filter((order: any) => 
           !expiredOrders.find((eo: any) => eo.orderId === order.orderId)
         );
 
-        // Save updated orders list (without expired orders)
         await axios.post('http://localhost:5001/orders', updatedOrders);
       }
     } catch (err) {
