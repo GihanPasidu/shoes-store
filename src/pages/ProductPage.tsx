@@ -44,6 +44,9 @@ const ProductPage: React.FC = () => {
             <Link to="/home" className="logo">BLUE TAG</Link>
           </div>
           <div className="header-right">
+            <Link to="/profile" className="profile-link">
+              <i className="fas fa-user"></i>
+            </Link>
             <Link to="/cart" className="cart-link">
               <i className="fas fa-shopping-cart"></i>
             </Link>

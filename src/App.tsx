@@ -5,6 +5,7 @@ import ProductPage from './pages/ProductPage';
 import CartPage from './pages/CartPage';
 import SignUpPage from './pages/SignUpPage';
 import LoginPage from './pages/LoginPage';
+import ProfilePage from './pages/ProfilePage';
 import AdminDashboard from './admin/admin-pages/AdminDashboard';
 import AddProduct from './admin/admin-pages/AddProduct';
 import EditProduct from './admin/admin-pages/EditProduct';
@@ -42,6 +43,11 @@ const App = () => {
           <Route path="/cart" element={
             <PrivateRoute>
               <CartPage />
+            </PrivateRoute>
+          } />
+          <Route path="/profile" element={
+            <PrivateRoute>
+              <ProfilePage />
             </PrivateRoute>
           } />
           <Route path="/admin" element={

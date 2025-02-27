@@ -21,6 +21,7 @@ const LoginPage: React.FC = () => {
         if (user) {
           localStorage.setItem('token', 'dummy-token');
           localStorage.setItem('role', user.role);
+          localStorage.setItem('userEmail', user.email);
           if (user.role === 'admin') {
             navigate('/admin');
           } else {

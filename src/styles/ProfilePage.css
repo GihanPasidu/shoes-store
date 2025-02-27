@@ -1,0 +1,67 @@
+.profile-page {
+    text-align: center;
+    background-image: url('https://www.toptal.com/designers/subtlepatterns/uploads/full-bloom.png');
+    background-repeat: repeat;
+    background-position: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-container {
+    max-width: 800px;
+    margin: 120px auto 40px;
+    padding: 0 20px;
+}
+
+.profile-card {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.profile-header {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.profile-icon {
+    font-size: 80px;
+    color: #1a237e;
+    margin-bottom: 20px;
+}
+
+.profile-header h2 {
+    color: #1a237e;
+    font-size: 24px;
+    margin: 0;
+}
+
+.profile-details {
+    text-align: left;
+}
+
+.detail-item {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.detail-item label {
+    display: block;
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.detail-item p {
+    color: #333;
+    font-size: 16px;
+    margin: 0;
+    font-weight: 500;
+}
+
+
+/* Header and Footer styles inherited from existing components */

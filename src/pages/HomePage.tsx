@@ -61,6 +61,9 @@ const HomePage: React.FC = () => {
             </form>
           </div>
           <div className="header-right">
+            <Link to="/profile" className="profile-link">
+              <i className="fas fa-user"></i>
+            </Link>
             <Link to="/cart" className="cart-link">
               <i className="fas fa-shopping-cart"></i>
             </Link>
