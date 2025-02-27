@@ -1,48 +1,49 @@
 {
     "users": [{
             "id": "0001",
+            "name": "Example User",
             "email": "example@gmail.com",
             "password": "1234",
             "role": "user"
         },
         {
             "id": "0002",
+            "name": "Sarah Edwards",
             "email": "sedgbers@gmail.com",
             "password": "123456",
             "role": "user"
         },
         {
             "id": "0003",
+            "name": "John Smith",
             "email": "example@gmail.com",
             "password": "1234",
             "role": "user"
         },
         {
             "id": "0004",
+            "name": "George Harris",
             "email": "ghfdbs@gmail.com",
             "password": "7894",
             "role": "user"
         },
         {
             "id": "0005",
+            "name": "Arthur Brown",
             "email": "arfhwrthb@gmail.com",
             "password": "12345",
             "role": "user"
         },
         {
-            "id": "0006",
-            "email": "gpk@gmail.com",
-            "password": "8080",
-            "role": "admin"
-        },
-        {
             "id": "0007",
+            "name": "GPK Manager",
             "email": "gpk@gmail.com",
             "password": "8080",
             "role": "admin"
         },
         {
             "id": "0008",
+            "name": "System Admin",
             "email": "example@gmail.com",
             "password": "8080",
             "role": "admin"

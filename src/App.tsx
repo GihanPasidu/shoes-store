@@ -9,6 +9,7 @@ import ProfilePage from './pages/ProfilePage';
 import AdminDashboard from './admin/admin-pages/AdminDashboard';
 import AddProduct from './admin/admin-pages/AddProduct';
 import EditProduct from './admin/admin-pages/EditProduct';
+import CheckoutPage from './pages/CheckoutPage';
 
 const PrivateRoute = ({ children }: { children: React.ReactElement }) => {
   const token = localStorage.getItem('token');
@@ -48,6 +49,11 @@ const App = () => {
           <Route path="/profile" element={
             <PrivateRoute>
               <ProfilePage />
+            </PrivateRoute>
+          } />
+          <Route path="/checkout" element={
+            <PrivateRoute>
+              <CheckoutPage />
             </PrivateRoute>
           } />
           <Route path="/admin" element={

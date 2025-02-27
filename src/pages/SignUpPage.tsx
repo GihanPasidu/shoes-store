@@ -4,6 +4,7 @@ import axios from 'axios';
 import '../styles/SignUpPage.css';
 
 const SignUpPage: React.FC = () => {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -17,7 +18,7 @@ const SignUpPage: React.FC = () => {
       return;
     }
 
-    const newUser = { email, password };
+    const newUser = { email, password, name, role: 'user' };
 
     axios.post('http://localhost:5001/users', newUser)
       .then(response => {
@@ -42,6 +43,13 @@ const SignUpPage: React.FC = () => {
       <form className="signup-form" onSubmit={handleSignUp}>
         <h2>Sign Up</h2>
         {error && <p className="error">{error}</p>}
+        <input
+          type="text"
+          placeholder="Full Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+        />
         <input
           type="email"
           placeholder="Email"

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../styles/ProfilePage.css';
 
 interface UserProfile {
   id: string;
+  name: string;
   email: string;
   role: string;
 }
@@ -12,6 +13,14 @@ interface UserProfile {
 const ProfilePage: React.FC = () => {
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
   const userEmail = localStorage.getItem('userEmail');
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('role');
+    localStorage.removeItem('userEmail');
+    navigate('/login');
+  };
 
   useEffect(() => {
     axios.get('http://localhost:5001/users')
@@ -49,6 +58,10 @@ const ProfilePage: React.FC = () => {
           </div>
           <div className="profile-details">
             <div className="detail-item">
+              <label>Name:</label>
+              <p>{userProfile.name}</p>
+            </div>
+            <div className="detail-item">
               <label>Email:</label>
               <p>{userProfile.email}</p>
             </div>
@@ -61,6 +74,9 @@ const ProfilePage: React.FC = () => {
               <p>{userProfile.role}</p>
             </div>
           </div>
+          <button className="logout-button" onClick={handleLogout}>
+            <i className="fas fa-sign-out-alt"></i> Logout
+          </button>
         </div>
       </div>
 

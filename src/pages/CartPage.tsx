@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useCart } from '../context/CartContext';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../styles/CartPage.css';
 
@@ -22,6 +22,7 @@ const CartPage: React.FC = () => {
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
   const [totalPrice, setTotalPrice] = useState<number>(0);
   const [itemQuantities, setItemQuantities] = useState<{[key: string]: number}>({});
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (cart.length > 0) {
@@ -70,8 +71,9 @@ const CartPage: React.FC = () => {
   };
 
   const handleCheckout = () => {
-    const selectedCartItems = cartItems.filter(item => selectedItems.includes(item.id.toString()));
-    console.log('Checking out the following items:', selectedCartItems);
+    navigate('/checkout', { 
+      state: { totalAmount: totalPrice }
+    });
   };
 
   const handleRemoveSelected = () => {
