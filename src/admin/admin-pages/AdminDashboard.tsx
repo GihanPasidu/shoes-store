@@ -27,6 +27,7 @@ interface Order {
   status: string;
   date: string;
   pickupDeadline: string;
+  itemDetails?: Product[];
 }
 
 const AdminDashboard: React.FC = () => {
@@ -42,6 +43,7 @@ const AdminDashboard: React.FC = () => {
   const [showConfirmDialog, setShowConfirmDialog] = useState(false);
   const [itemToDelete, setItemToDelete] = useState<{ id: number | string, type: 'product' | 'user' | 'order' } | null>(null);
   const [showLogoutDialog, setShowLogoutDialog] = useState(false);
+  const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
   const itemsPerPage = 8;
 
   useEffect(() => {
@@ -145,6 +147,21 @@ const AdminDashboard: React.FC = () => {
       }
     } catch (error) {
       console.error('Error updating order status:', error);
+    }
+  };
+
+  const handleViewOrderDetails = async (order: Order) => {
+    try {
+      // Fetch product details for each item in the order
+      const itemDetails = await Promise.all(
+        order.items.map(async (itemId) => {
+          const response = await axios.get(`http://localhost:5000/shoes/${itemId}`);
+          return response.data;
+        })
+      );
+      setSelectedOrder({ ...order, itemDetails });
+    } catch (error) {
+      console.error('Error fetching order details:', error);
     }
   };
 
@@ -379,7 +396,12 @@ const AdminDashboard: React.FC = () => {
                           </td>
                           <td>
                             <div className="user-actions">
-                              <button className="view-button">Details</button>
+                              <button 
+                                className="view-button"
+                                onClick={() => handleViewOrderDetails(order)}
+                              >
+                                Details
+                              </button>
                               <button 
                                 className="delete-button"
                                 onClick={() => handleDeleteClick(order.orderId, 'order')}
@@ -421,6 +443,38 @@ const AdminDashboard: React.FC = () => {
               <button className="cancel-logout" onClick={() => setShowLogoutDialog(false)}>
                 Cancel
               </button>
+            </div>
+          </div>
+        </div>
+      )}
+      {selectedOrder && (
+        <div className="confirm-dialog-overlay">
+          <div className="confirm-dialog order-details-dialog">
+            <h3>Order Details</h3>
+            <div className="order-details">
+              <p><strong>Order ID:</strong> {selectedOrder.orderId}</p>
+              <p><strong>Date:</strong> {new Date(selectedOrder.date).toLocaleDateString()}</p>
+              <p><strong>Time:</strong> {new Date(selectedOrder.date).toLocaleTimeString()}</p>
+              <p><strong>Payment Method:</strong> {selectedOrder.paymentMethod}</p>
+              <p><strong>Status:</strong> {selectedOrder.status}</p>
+              <p><strong>Pickup Deadline:</strong> {new Date(selectedOrder.pickupDeadline).toLocaleString()}</p>
+              
+              <div className="order-items">
+                <h4>Items:</h4>
+                {selectedOrder.itemDetails?.map((item, index) => (
+                  <div key={index} className="order-item">
+                    <img src={item.image} alt={item.name} />
+                    <div className="item-details">
+                      <p><strong>Name:</strong> {item.name}</p>
+                      <p><strong>Price:</strong> {item.price}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <p className="total-amount"><strong>Total Amount:</strong> ${selectedOrder.totalAmount}</p>
+            </div>
+            <div className="confirm-dialog-buttons">
+              <button className="cancel-delete" onClick={() => setSelectedOrder(null)}>Close</button>
             </div>
           </div>
         </div>

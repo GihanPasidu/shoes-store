@@ -970,3 +970,73 @@
 .status-hold { background-color: #ffc107; }
 .status-cancelled { background-color: #f8d7da; }
 
+.order-details-dialog {
+    max-width: 500px;
+}
+
+.order-details {
+    text-align: left;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    margin: 1rem 0;
+}
+
+.order-details p {
+    margin: 0.5rem 0;
+    line-height: 1.6;
+}
+
+.order-details strong {
+    color: #1a237e;
+    display: inline-block;
+    width: 130px;
+}
+
+.order-items {
+    margin-top: 1.5rem;
+    border-top: 1px solid #eee;
+    padding-top: 1rem;
+}
+
+.order-items h4 {
+    color: #1a237e;
+    margin: 0 0 1rem 0;
+}
+
+.order-item {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    background: white;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.order-item img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.item-details {
+    flex: 1;
+}
+
+.item-details p {
+    margin: 0.25rem 0;
+}
+
+.total-amount {
+    margin-top: 1.5rem !important;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+    font-size: 1.1rem;
+}
+
+.total-amount strong {
+    color: #198754;
+}
+
