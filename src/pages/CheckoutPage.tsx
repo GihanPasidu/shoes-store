@@ -8,8 +8,12 @@ interface CheckoutProps {
   totalAmount?: number;
 }
 
+type PaymentMethod = 'online' | 'pickup';
+type PaymentStatus = 'paid' | 'hold';
+type StorePayment = 'card' | 'store';
+
 const CheckoutPage: React.FC = () => {
-  const [paymentMethod, setPaymentMethod] = useState<string>('');
+  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod | ''>('');
   const [isProcessing, setIsProcessing] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -17,7 +21,7 @@ const CheckoutPage: React.FC = () => {
   const { clearCart, cart } = useCart();
   const userEmail = localStorage.getItem('userEmail');
 
-  const handlePaymentSelection = (method: string) => {
+  const handlePaymentSelection = (method: PaymentMethod) => {
     setPaymentMethod(method);
   };
 
@@ -61,6 +65,13 @@ const CheckoutPage: React.FC = () => {
     if (paymentMethod === 'pickup') {
       axios.get('http://localhost:5001/users')
         .then(async response => {
+          // Get all orders to find the last order number
+          const ordersRes = await axios.get('http://localhost:5001/orders');
+          const orders = Array.isArray(ordersRes.data) ? ordersRes.data : [];
+          const lastOrderNum = orders.length > 0 
+            ? parseInt(orders[orders.length - 1].orderId.replace('ORD', ''))
+            : 0;
+
           const user = response.data.find((u: any) => u.email === userEmail);
           if (user) {
             await updateShoeQuantities(cart);
@@ -70,12 +81,12 @@ const CheckoutPage: React.FC = () => {
             pickupDeadline.setHours(20, 0, 0, 0);
 
             const newOrder = {
-              orderId: `ORD${Date.now()}`,
+              orderId: `ORD${lastOrderNum + 1}`,
               id: user.id,
               items: cart,
               totalAmount: totalAmount,
-              paymentMethod: 'store',
-              status: 'pending',
+              paymentMethod: 'store' as StorePayment,
+              status: 'hold' as PaymentStatus,
               date: new Date().toISOString(),
               pickupDeadline: pickupDeadline.toISOString()
             };
@@ -100,7 +111,7 @@ const CheckoutPage: React.FC = () => {
           }
         })
         .catch(err => console.error('Error:', err));
-    } else {
+    } else if (paymentMethod === 'online') {
       navigate('/payment', { state: { amount: totalAmount } });
     }
   };

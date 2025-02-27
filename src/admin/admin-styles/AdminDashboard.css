@@ -154,7 +154,7 @@
 }
 
 .product-card {
-    background: white;
+    background: rgb(255, 255, 255);
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -298,7 +298,7 @@
 }
 
 .users-section {
-    background: white;
+    background: rgb(255, 255, 255);
     border-radius: 12px;
     padding: 2rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
@@ -338,9 +338,7 @@
     width: 300px;
 }
 
-
-/* Remove these classes */
-
+/* Remove these duplicate classes */
 .users-grid,
 .user-card,
 .users-list,
@@ -350,7 +348,6 @@
 .view-toggle {
     display: none;
 }
-
 
 /* Update users table styles */
 
@@ -625,7 +622,6 @@
 .current-details strong {
     color: #1a237e;
 }
-
 
 /* Add responsive styles */
 
@@ -944,12 +940,8 @@
     border-radius: 4px;
     border: 1px solid #ddd;
     cursor: pointer;
+    font-weight: 500;
 }
-
-.orders-table .status-pending { background-color: #fff3cd; }
-.orders-table .status-processing { background-color: #cfe2ff; }
-.orders-table .status-completed { background-color: #d1e7dd; }
-.orders-table .status-cancelled { background-color: #f8d7da; }
 
 .orders-table .delete-button {
     padding: 0.5rem 1rem;
@@ -965,10 +957,26 @@
     opacity: 0.9;
 }
 
-.status-pending { background-color: #fff3cd; }
-.status-paid { background-color: #198754; color: white; }
-.status-hold { background-color: #ffc107; }
-.status-cancelled { background-color: #f8d7da; }
+.status-paid, 
+.status-hold{
+    display: inline-block;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-align: center;
+    min-width: 50px;
+}
+
+.status-paid {
+    background-color: #198754;
+    color: white;
+}
+
+.status-hold {
+    background-color: #ffc107;
+    color: black;
+}
 
 .order-details-dialog {
     max-width: 500px;
@@ -1039,4 +1047,23 @@
 .total-amount strong {
     color: #198754;
 }
+
+.status-actions,
+.status-update-btn,
+.status-update-btn:hover {
+    display: none;
+}
+
+.payment-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.payment-card {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
 

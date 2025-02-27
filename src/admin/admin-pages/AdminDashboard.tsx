@@ -135,21 +135,6 @@ const AdminDashboard: React.FC = () => {
     setItemToDelete(null);
   };
 
-  const handleStatusChange = async (orderId: string, newStatus: string) => {
-    try {
-      const orderToUpdate = orders.find(order => order.orderId === orderId);
-      if (orderToUpdate) {
-        await axios.patch(`http://localhost:5001/orders/${orderToUpdate.id}`, {
-          ...orderToUpdate,
-          status: newStatus
-        });
-        fetchOrders();
-      }
-    } catch (error) {
-      console.error('Error updating order status:', error);
-    }
-  };
-
   const handleViewOrderDetails = async (order: Order) => {
     try {
       // Fetch product details for each item in the order
@@ -381,18 +366,17 @@ const AdminDashboard: React.FC = () => {
                           <td>{new Date(order.date).toLocaleDateString()}</td>
                           <td>{order.items.length} items</td>
                           <td>${order.totalAmount}</td>
-                          <td>{order.paymentMethod}</td>
                           <td>
-                            <select
-                              value={order.status}
-                              onChange={(e) => handleStatusChange(order.orderId, e.target.value)}
-                              className={`status-${order.status.toLowerCase()}`}
-                            >
-                              <option value="pending">Pending</option>
-                              <option value="paid">Paid</option>
-                              <option value="hold">Hold</option>
-                              <option value="cancelled">Cancelled</option>
-                            </select>
+                            <div className="payment-info">
+                              <span className={`payment-card${order.paymentMethod.toLowerCase()}`}>
+                                {order.paymentMethod.toUpperCase()}
+                              </span>
+                            </div>
+                          </td>
+                          <td>
+                            <span className={`status-${order.status.toLowerCase()}`}>
+                              {order.status.toUpperCase()}
+                            </span>
                           </td>
                           <td>
                             <div className="user-actions">
@@ -456,7 +440,7 @@ const AdminDashboard: React.FC = () => {
               <p><strong>Date:</strong> {new Date(selectedOrder.date).toLocaleDateString()}</p>
               <p><strong>Time:</strong> {new Date(selectedOrder.date).toLocaleTimeString()}</p>
               <p><strong>Payment Method:</strong> {selectedOrder.paymentMethod}</p>
-              <p><strong>Status:</strong> {selectedOrder.status}</p>
+              <p><strong>Status:</strong> <span className={`status-${selectedOrder.status}`}>{selectedOrder.status}</span></p>
               <p><strong>Pickup Deadline:</strong> {new Date(selectedOrder.pickupDeadline).toLocaleString()}</p>
               
               <div className="order-items">

@@ -46,47 +46,45 @@ const PaymentPage: React.FC = () => {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsProcessing(true);
 
-    axios.get('http://localhost:5001/users')
-      .then(async response => {
-        const user = response.data.find((u: any) => u.email === userEmail);
-        if (user) {
-          await updateShoeQuantities(cart);
+    try {
+      // Get all orders to find the last order number
+      const ordersRes = await axios.get('http://localhost:5001/orders');
+      const orders = Array.isArray(ordersRes.data) ? ordersRes.data : [];
+      const lastOrderNum = orders.length > 0 
+        ? parseInt(orders[orders.length - 1].orderId.replace('ORD', ''))
+        : 0;
 
-          const newOrder = {
-            orderId: `ORD${Date.now()}`,
-            id: user.id,
-            items: cart,
-            totalAmount: amount,
-            paymentMethod: 'card',
-            status: 'paid',
-            date: new Date().toISOString(),
-            pickupDeadline: null
-          };
+      const response = await axios.get('http://localhost:5001/users');
+      const user = response.data.find((u: any) => u.email === userEmail);
+      if (user) {
+        await updateShoeQuantities(cart);
 
-          // Get all orders
-          const ordersRes = await axios.get('http://localhost:5001/orders');
-          let orders = ordersRes.data;
-          
-          // Add new order
-          if (!Array.isArray(orders)) {
-            orders = [];
-          }
-          
-          // Remove nested duplicates if any
-          orders = orders.filter((order: any) => !order[0] && !order[1]);
-          orders.push(newOrder);
+        const newOrder = {
+          orderId: `ORD${lastOrderNum + 1}`,
+          id: user.id,
+          items: cart,
+          totalAmount: amount,
+          paymentMethod: 'card',
+          status: 'paid', // Always set to 'paid' for card payments
+          date: new Date().toISOString(),
+          pickupDeadline: null
+        };
 
-          // Update orders in database
-          await axios.post('http://localhost:5001/orders', orders);
-          clearCart();
-          navigate('/home');
-        }
-      })
-      .catch(err => console.error('Error:', err));
+        // Add new order
+        orders.push(newOrder);
+
+        // Update orders in database
+        await axios.post('http://localhost:5001/orders', orders);
+        clearCart();
+        navigate('/home');
+      }
+    } catch (err) {
+      console.error('Error:', err);
+    }
   };
 
   return (
