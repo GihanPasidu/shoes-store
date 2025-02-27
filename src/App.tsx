@@ -10,6 +10,7 @@ import AdminDashboard from './admin/admin-pages/AdminDashboard';
 import AddProduct from './admin/admin-pages/AddProduct';
 import EditProduct from './admin/admin-pages/EditProduct';
 import CheckoutPage from './pages/CheckoutPage';
+import PaymentPage from './pages/PaymentPage';
 
 const PrivateRoute = ({ children }: { children: React.ReactElement }) => {
   const token = localStorage.getItem('token');
@@ -54,6 +55,11 @@ const App = () => {
           <Route path="/checkout" element={
             <PrivateRoute>
               <CheckoutPage />
+            </PrivateRoute>
+          } />
+          <Route path="/payment" element={
+            <PrivateRoute>
+              <PaymentPage />
             </PrivateRoute>
           } />
           <Route path="/admin" element={

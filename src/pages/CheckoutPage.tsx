@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { useCart } from '../context/CartContext';
 import '../styles/CheckoutPage.css';
 
 interface CheckoutProps {
@@ -12,6 +13,7 @@ const CheckoutPage: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { totalAmount } = location.state as CheckoutProps;
+  const { clearCart } = useCart();
 
   const handlePaymentSelection = (method: string) => {
     setPaymentMethod(method);
@@ -23,16 +25,8 @@ const CheckoutPage: React.FC = () => {
     setTimeout(() => {
       setIsProcessing(false);
       if (paymentMethod === 'pickup') {
-        const pickupDeadline = new Date();
-        pickupDeadline.setDate(pickupDeadline.getDate() + 1);
-        pickupDeadline.setHours(20, 0, 0, 0);
-        navigate('/confirmation', {
-          state: {
-            method: 'pickup',
-            deadline: pickupDeadline.toLocaleString(),
-            amount: totalAmount
-          }
-        });
+        clearCart(); // Clear the cart after successful hold
+        navigate('/home'); // Redirect to home page
       } else {
         navigate('/payment', { 
           state: { amount: totalAmount }
