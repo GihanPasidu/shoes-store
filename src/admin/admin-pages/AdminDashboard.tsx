@@ -18,9 +18,21 @@ interface User {
   role: string;
 }
 
+interface Order {
+  orderId: string;
+  id: string;
+  items: string[];
+  totalAmount: number;
+  paymentMethod: string;
+  status: string;
+  date: string;
+  pickupDeadline: string;
+}
+
 const AdminDashboard: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [users, setUsers] = useState<User[]>([]);
+  const [orders, setOrders] = useState<Order[]>([]);
   const [activeTab, setActiveTab] = useState('products');
   const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(false);
@@ -28,7 +40,7 @@ const AdminDashboard: React.FC = () => {
   const [isSidebarExpanded, setIsSidebarExpanded] = useState(window.innerWidth > 768);
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [showConfirmDialog, setShowConfirmDialog] = useState(false);
-  const [itemToDelete, setItemToDelete] = useState<{ id: number | string, type: 'product' | 'user' } | null>(null);
+  const [itemToDelete, setItemToDelete] = useState<{ id: number | string, type: 'product' | 'user' | 'order' } | null>(null);
   const [showLogoutDialog, setShowLogoutDialog] = useState(false);
   const itemsPerPage = 8;
 
@@ -50,6 +62,7 @@ const AdminDashboard: React.FC = () => {
   useEffect(() => {
     fetchProducts();
     fetchUsers();
+    fetchOrders();
   }, []);
 
   /*
@@ -84,7 +97,16 @@ const AdminDashboard: React.FC = () => {
     }
   };
 
-  const handleDeleteClick = (id: number | string, type: 'product' | 'user') => {
+  const fetchOrders = async () => {
+    try {
+      const response = await axios.get('http://localhost:5001/orders');
+      setOrders(response.data);
+    } catch (error) {
+      console.error('Error fetching orders:', error);
+    }
+  };
+
+  const handleDeleteClick = (id: number | string, type: 'product' | 'user' | 'order') => {
     setItemToDelete({ id, type });
     setShowConfirmDialog(true);
   };
@@ -96,9 +118,12 @@ const AdminDashboard: React.FC = () => {
       if (itemToDelete.type === 'product') {
         await axios.delete(`http://localhost:5000/shoes/${itemToDelete.id}`);
         fetchProducts();
-      } else {
+      } else if (itemToDelete.type === 'user') {
         await axios.delete(`http://localhost:5001/users/${itemToDelete.id}`);
         fetchUsers();
+      } else {
+        await axios.delete(`http://localhost:5001/orders/${itemToDelete.id}`);
+        fetchOrders();
       }
     } catch (error) {
       console.error(`Error deleting ${itemToDelete.type}:`, error);
@@ -106,6 +131,21 @@ const AdminDashboard: React.FC = () => {
     
     setShowConfirmDialog(false);
     setItemToDelete(null);
+  };
+
+  const handleStatusChange = async (orderId: string, newStatus: string) => {
+    try {
+      const orderToUpdate = orders.find(order => order.orderId === orderId);
+      if (orderToUpdate) {
+        await axios.patch(`http://localhost:5001/orders/${orderToUpdate.id}`, {
+          ...orderToUpdate,
+          status: newStatus
+        });
+        fetchOrders();
+      }
+    } catch (error) {
+      console.error('Error updating order status:', error);
+    }
   };
 
   const getInitials = (email: string) => {
@@ -184,6 +224,12 @@ const AdminDashboard: React.FC = () => {
               onClick={() => setActiveTab('users')}
             >
               Users
+            </button>
+            <button 
+              className={`tab-button ${activeTab === 'orders' ? 'active' : ''}`}
+              onClick={() => setActiveTab('orders')}
+            >
+              Orders
             </button>
           </div>
           <Link to="/admin/add" className="add-product-button">
@@ -278,6 +324,68 @@ const AdminDashboard: React.FC = () => {
                           </div>
                         </td>
                       </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          ) : activeTab === 'orders' ? (
+            <div className="orders-section">
+              <div className="section-header">
+                <h2>Orders Management</h2>
+                <div className="search-bar">
+                  <input
+                    type="text"
+                    placeholder="Search orders..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                  />
+                </div>
+              </div>
+              <div className="orders-table-container">
+                <table className="orders-table">
+                  <thead>
+                    <tr>
+                      <th>Order ID</th>
+                      <th>Date</th>
+                      <th>Items</th>
+                      <th>Total</th>
+                      <th>Payment</th>
+                      <th>Status</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {orders
+                      .filter(order => order.orderId?.toLowerCase().includes(searchTerm.toLowerCase()))
+                      .map(order => (
+                        <tr key={order.orderId}>
+                          <td>{order.orderId}</td>
+                          <td>{new Date(order.date).toLocaleDateString()}</td>
+                          <td>{order.items.length} items</td>
+                          <td>${order.totalAmount}</td>
+                          <td>{order.paymentMethod}</td>
+                          <td>
+                            <select
+                              value={order.status}
+                              onChange={(e) => handleStatusChange(order.orderId, e.target.value)}
+                              className={`status-${order.status.toLowerCase()}`}
+                            >
+                              <option value="pending">Pending</option>
+                              <option value="processing">Processing</option>
+                              <option value="completed">Completed</option>
+                              <option value="cancelled">Cancelled</option>
+                            </select>
+                          </td>
+                          <td>
+                            <button onClick={() => {
+                              setItemToDelete({ id: order.orderId, type: 'order' });
+                              setShowConfirmDialog(true);
+                            }}>
+                              Delete
+                            </button>
+                          </td>
+                        </tr>
                     ))}
                   </tbody>
                 </table>

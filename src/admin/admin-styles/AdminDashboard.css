@@ -892,13 +892,6 @@
     color: white;
 }
 
-.orders-section,
-.orders-table-container,
-.orders-table,
-.order-actions {
-    display: none;
-}
-
 .confirm-dialog {
     max-height: 90vh;
     overflow-y: auto;
@@ -912,3 +905,48 @@
 .confirm-dialog strong {
     color: #1a237e;
 }
+
+.orders-section {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    margin-top: 1rem;
+}
+
+.orders-table-container {
+    margin-top: 2rem;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.orders-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.orders-table th,
+.orders-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.orders-table th {
+    background: #1a237e;
+    color: white;
+}
+
+.orders-table select {
+    padding: 0.5rem;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+}
+
+.orders-table .status-pending { background-color: #fff3cd; }
+.orders-table .status-processing { background-color: #cfe2ff; }
+.orders-table .status-completed { background-color: #d1e7dd; }
+.orders-table .status-cancelled { background-color: #f8d7da; }
