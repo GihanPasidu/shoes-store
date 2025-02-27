@@ -1,5 +1,6 @@
 .profile-page {
     text-align: center;
+    justify-content: center;
     background-image: url('https://www.toptal.com/designers/subtlepatterns/uploads/full-bloom.png');
     background-repeat: repeat;
     background-position: center;
@@ -13,6 +14,7 @@
     padding: 0 20px;
     display: flex;
     justify-content: center;
+    
 }
 
 .profile-card {
@@ -20,7 +22,8 @@
     border-radius: 12px;
     padding: 30px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 40%;
+    width: 80%;
+    
 
 }
 
@@ -42,7 +45,8 @@
 }
 
 .profile-details {
-    text-align: left;
+    text-align: center;
+    justify-content: center;
 }
 
 .detail-item {
@@ -67,7 +71,7 @@
 }
 
 .logout-button {
-    width: 50%;
+    width: 20%;
     padding: 12px;
     background-color: #dc3545;
     color: white;
@@ -97,6 +101,9 @@
 .orders-section {
     margin-top: 30px;
     text-align: left;
+    width: 80%;
+    margin-left: 150px;
+
 }
 
 .orders-section h3 {
@@ -123,6 +130,7 @@
 }
 
 .order-date {
+    margin-left: 10px;
     color: #666;
     font-size: 0.9em;
 }
@@ -141,7 +149,7 @@
     padding: 4px 8px;
     border-radius: 4px;
     font-size: 0.9em;
-    font-weight: 500;
+    height: 24px;
 }
 
 .status-pending {
